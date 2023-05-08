@@ -430,22 +430,22 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: catboost in /srv/conda/envs/notebook/lib/python3.10/site-packages (1.2)
-Requirement already satisfied: graphviz in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (0.20.1)
 Requirement already satisfied: scipy in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (1.10.0)
-Requirement already satisfied: plotly in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (5.12.0)
-Requirement already satisfied: matplotlib in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (3.6.3)
 Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (1.16.0)
-Requirement already satisfied: numpy&gt;=1.16.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (1.23.5)
 Requirement already satisfied: pandas&gt;=0.24 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (1.5.3)
+Requirement already satisfied: matplotlib in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (3.6.3)
+Requirement already satisfied: plotly in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (5.12.0)
+Requirement already satisfied: graphviz in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (0.20.1)
+Requirement already satisfied: numpy&gt;=1.16.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (1.23.5)
 Requirement already satisfied: python-dateutil&gt;=2.8.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from pandas&gt;=0.24-&gt;catboost) (2.8.2)
 Requirement already satisfied: pytz&gt;=2020.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from pandas&gt;=0.24-&gt;catboost) (2021.3)
-Requirement already satisfied: pillow&gt;=6.2.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (9.4.0)
-Requirement already satisfied: packaging&gt;=20.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (21.3)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (4.39.3)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (1.4.4)
-Requirement already satisfied: pyparsing&gt;=2.2.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (3.0.6)
-Requirement already satisfied: contourpy&gt;=1.0.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (1.0.7)
 Requirement already satisfied: cycler&gt;=0.10 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (0.11.0)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (1.0.7)
+Requirement already satisfied: pillow&gt;=6.2.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (9.4.0)
+Requirement already satisfied: pyparsing&gt;=2.2.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (3.0.6)
+Requirement already satisfied: packaging&gt;=20.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (21.3)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (1.4.4)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (4.39.3)
 Requirement already satisfied: tenacity&gt;=6.2.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from plotly-&gt;catboost) (8.2.2)
 </pre></div>
 </div>
@@ -764,13 +764,6 @@ Name: Type, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_top_breeds</span><span class="p">(</span><span class="s1">&#39;CAT&#39;</span><span class="p">,</span> <span class="n">shelter_data</span><span class="p">)</span>
-<span class="c1"># cat_data = shelter_data[shelter_data[&#39;Type&#39;] == &#39;CAT&#39;]</span>
-<span class="c1"># cat_breed_counts = cat_data[&#39;Breed&#39;].value_counts(ascending=True).tail(5)</span>
-<span class="c1"># plt.barh(cat_breed_counts.index, cat_breed_counts)</span>
-<span class="c1"># plt.title(&#39;Top Cat Breeds in the Shelter&#39;, size=15)</span>
-<span class="c1"># plt.xlabel(&#39;Count&#39;, size=15)</span>
-<span class="c1"># plt.ylabel(&#39;Breed&#39;, size=15)</span>
-<span class="c1"># plt.show()</span>
 </pre></div>
 </div>
 </div>
@@ -784,13 +777,6 @@ Name: Type, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_top_breeds</span><span class="p">(</span><span class="s1">&#39;DOG&#39;</span><span class="p">,</span> <span class="n">shelter_data</span><span class="p">)</span>
-<span class="c1"># dog_data = shelter_data[shelter_data[&#39;Type&#39;] == &#39;DOG&#39;]</span>
-<span class="c1"># dog_breed_counts = dog_data[&#39;Breed&#39;].value_counts(ascending=True).tail(5)</span>
-<span class="c1"># plt.barh(dog_breed_counts.index, dog_breed_counts)</span>
-<span class="c1"># plt.title(&#39;Top Dog Breeds in the Shelter&#39;, size=15)</span>
-<span class="c1"># plt.xlabel(&#39;Count&#39;, size=15)</span>
-<span class="c1"># plt.ylabel(&#39;Breed&#39;, size=15)</span>
-<span class="c1"># plt.show()</span>
 </pre></div>
 </div>
 </div>
@@ -898,23 +884,12 @@ Name: Type, dtype: int64
 <h4>Trend line: which year has the most number of animal intakes?<a class="headerlink" href="#trend-line-which-year-has-the-most-number-of-animal-intakes" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Intake Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Intake Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:])</span>
-
-<span class="c1"># Filter the data to only include records from the year 2014 and later.</span>
-<span class="n">shelter_data</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="p">[</span><span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Intake Year&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;2013&#39;</span><span class="p">]</span>
-<span class="n">intake_counts</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Intake Year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
-<span class="n">intake_counts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Animal Intakes by Year&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">intake_counts</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">intake_counts</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">intake_counts</span><span class="p">)),</span> <span class="n">intake_counts</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Intake Year&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Trend Line of Animal Intakes by Year&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_trend_line</span><span class="p">(</span><span class="n">shelter_data</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c15776c4270f5b2031fc49d4825aaf155daf75d5c32f2abf313565d09f1cb424.png" src="_images/c15776c4270f5b2031fc49d4825aaf155daf75d5c32f2abf313565d09f1cb424.png" />
+<img alt="_images/504cfac60f0302523907b634badf03195c12918038a13961e047d04e2184452f.png" src="_images/504cfac60f0302523907b634badf03195c12918038a13961e047d04e2184452f.png" />
 </div>
 </div>
 </section>
@@ -1009,7 +984,7 @@ Name: Type, dtype: int64
     </tr>
   </tbody>
 </table>
-<p>24853 rows × 2 columns</p>
+<p>24973 rows × 2 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1072,97 +1047,97 @@ dtype: int64
     <tr>
       <th rowspan="7" valign="top">OTHER</th>
       <th>TRANSFER</th>
-      <td>42.814668</td>
+      <td>42.793682</td>
     </tr>
     <tr>
       <th>EUTHANIZE</th>
-      <td>21.902874</td>
+      <td>21.816387</td>
     </tr>
     <tr>
       <th>ADOPTION</th>
-      <td>21.110010</td>
+      <td>21.273445</td>
     </tr>
     <tr>
       <th>RETURN TO OWNER</th>
-      <td>9.910803</td>
+      <td>9.871668</td>
     </tr>
     <tr>
       <th>DIED</th>
-      <td>2.279485</td>
+      <td>2.270484</td>
     </tr>
     <tr>
       <th>DISPOSAL</th>
-      <td>1.734390</td>
+      <td>1.727542</td>
     </tr>
     <tr>
       <th>ESCAPED/STOLEN</th>
-      <td>0.247770</td>
+      <td>0.246792</td>
     </tr>
     <tr>
       <th rowspan="8" valign="top">DOG</th>
       <th>RETURN TO OWNER</th>
-      <td>50.504468</td>
+      <td>50.250609</td>
     </tr>
     <tr>
       <th>ADOPTION</th>
-      <td>23.400115</td>
+      <td>23.600172</td>
     </tr>
     <tr>
       <th>TRANSFER</th>
-      <td>14.600749</td>
+      <td>14.556781</td>
     </tr>
     <tr>
       <th>EUTHANIZE</th>
-      <td>10.723551</td>
+      <td>10.826292</td>
     </tr>
     <tr>
       <th>RTOS</th>
-      <td>0.266647</td>
+      <td>0.264929</td>
     </tr>
     <tr>
       <th>DISPOSAL</th>
-      <td>0.252234</td>
+      <td>0.250609</td>
     </tr>
     <tr>
       <th>DIED</th>
-      <td>0.216201</td>
+      <td>0.214807</td>
     </tr>
     <tr>
       <th>ESCAPED/STOLEN</th>
-      <td>0.036033</td>
+      <td>0.035801</td>
     </tr>
     <tr>
       <th rowspan="8" valign="top">CAT</th>
       <th>ADOPTION</th>
-      <td>40.857403</td>
+      <td>40.948276</td>
     </tr>
     <tr>
       <th>TRANSFER</th>
-      <td>26.620423</td>
+      <td>26.576679</td>
     </tr>
     <tr>
       <th>EUTHANIZE</th>
-      <td>16.272458</td>
+      <td>16.254537</td>
     </tr>
     <tr>
       <th>RETURN TO OWNER</th>
-      <td>13.236297</td>
+      <td>13.214610</td>
     </tr>
     <tr>
       <th>DISPOSAL</th>
-      <td>1.785308</td>
+      <td>1.780853</td>
     </tr>
     <tr>
       <th>DIED</th>
-      <td>1.023425</td>
+      <td>1.020871</td>
     </tr>
     <tr>
       <th>RTOS</th>
-      <td>0.125085</td>
+      <td>0.124773</td>
     </tr>
     <tr>
       <th>ESCAPED/STOLEN</th>
-      <td>0.079600</td>
+      <td>0.079401</td>
     </tr>
   </tbody>
 </table>
@@ -1182,7 +1157,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/27f49cb5a3149c480f6e81440a46c3613f4607957dfd32ef9bb1baaa6d76b4f1.png" src="_images/27f49cb5a3149c480f6e81440a46c3613f4607957dfd32ef9bb1baaa6d76b4f1.png" />
+<img alt="_images/3c9b502ee41b8dd0f62559369a1a9c5683a028e41344b2bc0aa91670a1577850.png" src="_images/3c9b502ee41b8dd0f62559369a1a9c5683a028e41344b2bc0aa91670a1577850.png" />
 </div>
 </div>
 <p>Adoption was the most common outcome for cats at 41%. Half of the dogs in the shelter are being returned to owner, whereas most of the other species (43%) are being transferred.</p>
@@ -1248,36 +1223,36 @@ dtype: int64
   <tbody>
     <tr>
       <th>CAT</th>
-      <td>40.857403</td>
-      <td>1.023425</td>
-      <td>1.785308</td>
-      <td>0.079600</td>
-      <td>16.272458</td>
-      <td>13.236297</td>
-      <td>0.125085</td>
-      <td>26.620423</td>
+      <td>40.948276</td>
+      <td>1.020871</td>
+      <td>1.780853</td>
+      <td>0.079401</td>
+      <td>16.254537</td>
+      <td>13.214610</td>
+      <td>0.124773</td>
+      <td>26.576679</td>
     </tr>
     <tr>
       <th>DOG</th>
-      <td>23.400115</td>
-      <td>0.216201</td>
-      <td>0.252234</td>
-      <td>0.036033</td>
-      <td>10.723551</td>
-      <td>50.504468</td>
-      <td>0.266647</td>
-      <td>14.600749</td>
+      <td>23.600172</td>
+      <td>0.214807</td>
+      <td>0.250609</td>
+      <td>0.035801</td>
+      <td>10.826292</td>
+      <td>50.250609</td>
+      <td>0.264929</td>
+      <td>14.556781</td>
     </tr>
     <tr>
       <th>OTHER</th>
-      <td>21.110010</td>
-      <td>2.279485</td>
-      <td>1.734390</td>
-      <td>0.247770</td>
-      <td>21.902874</td>
-      <td>9.910803</td>
+      <td>21.273445</td>
+      <td>2.270484</td>
+      <td>1.727542</td>
+      <td>0.246792</td>
+      <td>21.816387</td>
+      <td>9.871668</td>
       <td>NaN</td>
-      <td>42.814668</td>
+      <td>42.793682</td>
     </tr>
   </tbody>
 </table>
@@ -1386,7 +1361,7 @@ dtype: int64
     </tr>
   </tbody>
 </table>
-<p>24853 rows × 3 columns</p>
+<p>24973 rows × 3 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1430,31 +1405,31 @@ dtype: int64
       <th>0</th>
       <td>2014.0</td>
       <td>ADOPTION</td>
-      <td>36.818033</td>
+      <td>37.661113</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2014.0</td>
       <td>RETURN TO OWNER</td>
-      <td>34.465861</td>
+      <td>33.511474</td>
     </tr>
     <tr>
       <th>2</th>
       <td>2014.0</td>
       <td>TRANSFER</td>
-      <td>14.211042</td>
+      <td>14.052185</td>
     </tr>
     <tr>
       <th>3</th>
       <td>2014.0</td>
       <td>EUTHANIZE</td>
-      <td>12.969618</td>
+      <td>13.297705</td>
     </tr>
     <tr>
       <th>4</th>
       <td>2014.0</td>
       <td>DIED</td>
-      <td>0.947403</td>
+      <td>0.911663</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1499,19 +1474,6 @@ dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to plot trend line for rates given Outcome Type</span>
-<span class="c1"># def trend_proportion(Outcome):</span>
-<span class="c1">#     outcome_type = yearly_rate[yearly_rate[&quot;Outcome Type&quot;]==Outcome]</span>
-<span class="c1">#     ax = outcome_type.plot(x=&quot;year&quot;,y=&quot;percent&quot;)</span>
-<span class="c1">#     ax.set_ylabel(&quot;% out of total intakes&quot;)</span>
-<span class="c1">#     ax.set_title(&quot;Proportion of &quot;+Outcome+&quot; by year&quot;)</span>
-    
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize rates</span>
 <span class="n">adoption</span> <span class="o">=</span> <span class="n">trend_proportion</span><span class="p">(</span><span class="s2">&quot;ADOPTION&quot;</span><span class="p">,</span> <span class="n">yearly_rate</span><span class="p">)</span>
 <span class="n">euthanize</span> <span class="o">=</span> <span class="n">trend_proportion</span><span class="p">(</span><span class="s2">&quot;EUTHANIZE&quot;</span><span class="p">,</span> <span class="n">yearly_rate</span><span class="p">)</span>
@@ -1521,10 +1483,10 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2ed625c7e36d947a70f3be049505a107ae95f8fd7d63a8e1bdc445f11d2fac82.png" src="_images/2ed625c7e36d947a70f3be049505a107ae95f8fd7d63a8e1bdc445f11d2fac82.png" />
-<img alt="_images/e8d6ea2e88b3d4281de64e6d24f1a51103a66da08d2b9624eed2f5a647bb1564.png" src="_images/e8d6ea2e88b3d4281de64e6d24f1a51103a66da08d2b9624eed2f5a647bb1564.png" />
-<img alt="_images/3ae7185d882aaadcac1da0e594aaf45c757e297985ea1b5acb979c81eddc9c26.png" src="_images/3ae7185d882aaadcac1da0e594aaf45c757e297985ea1b5acb979c81eddc9c26.png" />
-<img alt="_images/0bc59b6c6ab1b404d74ba43e1e96d3c12724cd1716e1df58f8deaddc5bc0cb74.png" src="_images/0bc59b6c6ab1b404d74ba43e1e96d3c12724cd1716e1df58f8deaddc5bc0cb74.png" />
+<img alt="_images/b9a22f3c49122a9f66a5464c6add94cdf5c2faef731ef897e963579803436000.png" src="_images/b9a22f3c49122a9f66a5464c6add94cdf5c2faef731ef897e963579803436000.png" />
+<img alt="_images/d23bc0a869f940b6c0f9587176d559e7dbb8aa82bbe1b7c47ad45ba79a0e21ff.png" src="_images/d23bc0a869f940b6c0f9587176d559e7dbb8aa82bbe1b7c47ad45ba79a0e21ff.png" />
+<img alt="_images/a045e6ec65b138bd7914ff6124746b4649e576d772f2668d60ece858bd00c259.png" src="_images/a045e6ec65b138bd7914ff6124746b4649e576d772f2668d60ece858bd00c259.png" />
+<img alt="_images/d20e81d02308e14ab861bc3e6c5caedfceaba7210b11427c8a8aa8a528137f92.png" src="_images/d20e81d02308e14ab861bc3e6c5caedfceaba7210b11427c8a8aa8a528137f92.png" />
 </div>
 </div>
 <p>It appears that as the adoption rate declines throughout the years, the shelter chooses to transfer than animals rather than euthanizing.</p>
@@ -1556,7 +1518,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((17397, 26), (7456, 26))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((17481, 26), (7492, 26))
 </pre></div>
 </div>
 </div>
@@ -1572,44 +1534,44 @@ dtype: int64
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning: Maximum number of iterations has been exceeded.
-         Current function value: 0.351088
+         Current function value: 0.357273
          Iterations: 35
                            Logit Regression Results                           
 ==============================================================================
-Dep. Variable:                Adopted   No. Observations:                17397
-Model:                          Logit   Df Residuals:                    17373
+Dep. Variable:                Adopted   No. Observations:                17481
+Model:                          Logit   Df Residuals:                    17457
 Method:                           MLE   Df Model:                           23
-Date:                Mon, 08 May 2023   Pseudo R-squ.:                  0.4198
-Time:                        21:20:04   Log-Likelihood:                -6107.9
-converged:                      False   LL-Null:                       -10527.
+Date:                Mon, 08 May 2023   Pseudo R-squ.:                  0.4094
+Time:                        23:22:41   Log-Likelihood:                -6245.5
+converged:                      False   LL-Null:                       -10575.
 Covariance Type:            nonrobust   LLR p-value:                     0.000
 ============================================================================================================
                                                coef    std err          z      P&gt;|z|      [0.025      0.975]
 ------------------------------------------------------------------------------------------------------------
-Intercept                                   -0.1241      0.211     -0.589      0.556      -0.537       0.289
-Type[T.DOG]                                 -0.2335      0.070     -3.334      0.001      -0.371      -0.096
-Type[T.OTHER]                                2.2262      0.136     16.418      0.000       1.960       2.492
-Sex[T.Male]                                 -0.3298      0.170     -1.939      0.053      -0.663       0.004
-Sex[T.Neutered]                              3.5780      0.133     26.839      0.000       3.317       3.839
-Sex[T.Spayed]                                3.7717      0.134     28.046      0.000       3.508       4.035
-Sex[T.Unknown]                              -0.9605      0.202     -4.758      0.000      -1.356      -0.565
-Size[T.LARGE]                               -2.4246      0.112    -21.598      0.000      -2.645      -2.205
-Size[T.MED]                                 -1.9748      0.109    -18.180      0.000      -2.188      -1.762
-Size[T.PUPPY]                                0.0281      0.159      0.176      0.860      -0.284       0.340
-Size[T.SMALL]                               -1.6344      0.083    -19.802      0.000      -1.796      -1.473
-Size[T.TOY]                                 -1.4891      0.131    -11.333      0.000      -1.747      -1.232
-Size[T.X-LRG]                               -2.9262      0.288    -10.168      0.000      -3.490      -2.362
-Intake_Type[T.BORN HERE]                   -27.1539   6.18e+05  -4.39e-05      1.000   -1.21e+06    1.21e+06
-Intake_Type[T.CONFISCATE]                   -2.5505      0.187    -13.675      0.000      -2.916      -2.185
-Intake_Type[T.OS APPT]                     -13.3656   1386.096     -0.010      0.992   -2730.063    2703.332
-Intake_Type[T.OWNER SURRENDER]              -0.9363      0.167     -5.598      0.000      -1.264      -0.608
-Intake_Type[T.QUARANTINE]                   -3.2875      0.300    -10.961      0.000      -3.875      -2.700
-Intake_Type[T.STRAY]                        -1.8236      0.159    -11.502      0.000      -2.134      -1.513
-Intake_Type[T.TRANSFER]                     -1.3415      0.213     -6.308      0.000      -1.758      -0.925
-Intake_Condition[T.TREATABLE/MANAGEABLE]    -0.5788      0.091     -6.357      0.000      -0.757      -0.400
-Intake_Condition[T.TREATABLE/REHAB]          0.3698      0.078      4.753      0.000       0.217       0.522
-Intake_Condition[T.UNKNOWN]                 -1.3972      0.063    -22.022      0.000      -1.522      -1.273
-Intake_Condition[T.UNTREATABLE]             -4.1498      0.324    -12.796      0.000      -4.785      -3.514
+Intercept                                   -0.2155      0.201     -1.072      0.284      -0.610       0.179
+Type[T.DOG]                                 -0.2597      0.069     -3.740      0.000      -0.396      -0.124
+Type[T.OTHER]                                2.1649      0.132     16.347      0.000       1.905       2.424
+Sex[T.Male]                                 -0.3421      0.166     -2.064      0.039      -0.667      -0.017
+Sex[T.Neutered]                              3.4818      0.131     26.629      0.000       3.225       3.738
+Sex[T.Spayed]                                3.6436      0.132     27.655      0.000       3.385       3.902
+Sex[T.Unknown]                              -0.8231      0.192     -4.298      0.000      -1.198      -0.448
+Size[T.LARGE]                               -2.3318      0.111    -21.093      0.000      -2.549      -2.115
+Size[T.MED]                                 -1.9292      0.107    -17.972      0.000      -2.140      -1.719
+Size[T.PUPPY]                                0.0186      0.154      0.121      0.904      -0.284       0.321
+Size[T.SMALL]                               -1.5469      0.081    -19.133      0.000      -1.705      -1.388
+Size[T.TOY]                                 -1.3876      0.129    -10.746      0.000      -1.641      -1.134
+Size[T.X-LRG]                               -2.8595      0.287     -9.963      0.000      -3.422      -2.297
+Intake_Type[T.BORN HERE]                   -18.5356   8192.129     -0.002      0.998   -1.61e+04     1.6e+04
+Intake_Type[T.CONFISCATE]                   -2.4406      0.175    -13.907      0.000      -2.785      -2.097
+Intake_Type[T.OS APPT]                     -15.0138   3346.556     -0.004      0.996   -6574.143    6544.115
+Intake_Type[T.OWNER SURRENDER]              -0.8415      0.157     -5.360      0.000      -1.149      -0.534
+Intake_Type[T.QUARANTINE]                   -3.2438      0.300    -10.818      0.000      -3.832      -2.656
+Intake_Type[T.STRAY]                        -1.6970      0.148    -11.465      0.000      -1.987      -1.407
+Intake_Type[T.TRANSFER]                     -1.0886      0.205     -5.298      0.000      -1.491      -0.686
+Intake_Condition[T.TREATABLE/MANAGEABLE]    -0.5956      0.091     -6.543      0.000      -0.774      -0.417
+Intake_Condition[T.TREATABLE/REHAB]          0.3818      0.077      4.954      0.000       0.231       0.533
+Intake_Condition[T.UNKNOWN]                 -1.3646      0.063    -21.801      0.000      -1.487      -1.242
+Intake_Condition[T.UNTREATABLE]             -4.3279      0.360    -12.012      0.000      -5.034      -3.622
 ============================================================================================================
 </pre></div>
 </div>
@@ -1636,8 +1598,8 @@ Intake_Condition[T.UNTREATABLE]             -4.1498      0.324    -12.796      0
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Confusion Matrix : 
- [[4851  442]
- [ 842 1321]]
+ [[4820  460]
+ [ 809 1403]]
 </pre></div>
 </div>
 </div>
@@ -1662,9 +1624,9 @@ Intake_Condition[T.UNTREATABLE]             -4.1498      0.324    -12.796      0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy is: 0.8278
-TPR is: 0.6107
-FPR is: 0.0835
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy is: 0.8306
+TPR is: 0.6343
+FPR is: 0.0871
 </pre></div>
 </div>
 </div>
@@ -1750,10 +1712,10 @@ FPR is: 0.0835
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:	learn: 0.6449894	total: 68.8ms	remaining: 1m 43s
-500:	learn: 0.3096699	total: 11.3s	remaining: 22.5s
-1000:	learn: 0.2512172	total: 23.6s	remaining: 11.7s
-1499:	learn: 0.2182771	total: 35.3s	remaining: 0us
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:	learn: 0.6458547	total: 73ms	remaining: 1m 49s
+500:	learn: 0.3103670	total: 11.1s	remaining: 22.2s
+1000:	learn: 0.2503310	total: 22.5s	remaining: 11.2s
+1499:	learn: 0.2160745	total: 33.7s	remaining: 0us
 </pre></div>
 </div>
 </div>
@@ -1770,7 +1732,7 @@ FPR is: 0.0835
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e4dfa0f24810b2bef16563f12a2025245dea0e052e87854d68c32b361ea0993f.png" src="_images/e4dfa0f24810b2bef16563f12a2025245dea0e052e87854d68c32b361ea0993f.png" />
+<img alt="_images/0d3b95c9a28cb5c960779fed7c92a064bfa3bf19bf487bd7a66597cfee669ea2.png" src="_images/0d3b95c9a28cb5c960779fed7c92a064bfa3bf19bf487bd7a66597cfee669ea2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1792,8 +1754,8 @@ FPR is: 0.0835
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing performance
-RMSE: 22.66
-R2: 0.32
+RMSE: 22.60
+R2: 0.36
 </pre></div>
 </div>
 </div>
@@ -1809,7 +1771,7 @@ R2: 0.32
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9397a22b6e5ccde43e9ec05621935fe5b3abaa7712082573742eabb069df6b3c.png" src="_images/9397a22b6e5ccde43e9ec05621935fe5b3abaa7712082573742eabb069df6b3c.png" />
+<img alt="_images/3ee6a063533736b37f2f128a528397b187050943d1c7c4c4cb9f2a479b6dadf0.png" src="_images/3ee6a063533736b37f2f128a528397b187050943d1c7c4c4cb9f2a479b6dadf0.png" />
 </div>
 </div>
 </section>
