@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Analysis of Animal Shelter Data in Sonoma County, CA &#8212; Group 12 Final Project</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -65,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Group 12 Final Project" href="README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -413,13 +414,13 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="analysis-of-animal-shelter-data-in-sonoma-county-ca">
-<h1>Analysis of Animal Shelter Data in Sonoma County, CA<a class="headerlink" href="#analysis-of-animal-shelter-data-in-sonoma-county-ca" title="Permalink to this headline">#</a></h1>
+<h1>Analysis of Animal Shelter Data in Sonoma County, CA<a class="headerlink" href="#analysis-of-animal-shelter-data-in-sonoma-county-ca" title="Permalink to this heading">#</a></h1>
 <section id="goal-of-analysis">
-<h2>Goal of Analysis<a class="headerlink" href="#goal-of-analysis" title="Permalink to this headline">#</a></h2>
+<h2>Goal of Analysis<a class="headerlink" href="#goal-of-analysis" title="Permalink to this heading">#</a></h2>
 <p>Our main goal is to shed insight on the outcomes of animals surrendered to Sonoma County Animal Services.</p>
 </section>
 <section id="about-the-data">
-<h2>About the Data<a class="headerlink" href="#about-the-data" title="Permalink to this headline">#</a></h2>
+<h2>About the Data<a class="headerlink" href="#about-the-data" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install catboost</span>
@@ -649,7 +650,7 @@ document.write(`
 </div>
 </div>
 <section id="data-cleaning">
-<h3>Data Cleaning<a class="headerlink" href="#data-cleaning" title="Permalink to this headline">#</a></h3>
+<h3>Data Cleaning<a class="headerlink" href="#data-cleaning" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shelter_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Size&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -699,14 +700,14 @@ dtype: int64
 </section>
 </section>
 <section id="data-assumptions">
-<h2>Data Assumptions?<a class="headerlink" href="#data-assumptions" title="Permalink to this headline">#</a></h2>
+<h2>Data Assumptions?<a class="headerlink" href="#data-assumptions" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">#</a></h2>
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <section id="eda">
-<h3>EDA<a class="headerlink" href="#eda" title="Permalink to this headline">#</a></h3>
+<h3>EDA<a class="headerlink" href="#eda" title="Permalink to this heading">#</a></h3>
 <section id="explore-the-number-of-animals-in-the-shelter-by-type">
-<h4>Explore the Number of Animals in the Shelter by Type<a class="headerlink" href="#explore-the-number-of-animals-in-the-shelter-by-type" title="Permalink to this headline">#</a></h4>
+<h4>Explore the Number of Animals in the Shelter by Type<a class="headerlink" href="#explore-the-number-of-animals-in-the-shelter-by-type" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shelter_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Intake_Type&#39;</span><span class="p">)[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
@@ -743,7 +744,7 @@ Name: count, dtype: int64
 </div>
 </section>
 <section id="eda-what-are-the-top-cat-breeds-in-the-shelter">
-<h4>EDA: What are the Top Cat Breeds in the Shelter?<a class="headerlink" href="#eda-what-are-the-top-cat-breeds-in-the-shelter" title="Permalink to this headline">#</a></h4>
+<h4>EDA: What are the Top Cat Breeds in the Shelter?<a class="headerlink" href="#eda-what-are-the-top-cat-breeds-in-the-shelter" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat_data</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="p">[</span><span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;CAT&#39;</span><span class="p">]</span>
@@ -762,7 +763,7 @@ Name: count, dtype: int64
 </div>
 </section>
 <section id="eda-what-are-the-top-dog-breeds-in-the-shelter">
-<h4>EDA: What are the Top Dog Breeds in the Shelter?<a class="headerlink" href="#eda-what-are-the-top-dog-breeds-in-the-shelter" title="Permalink to this headline">#</a></h4>
+<h4>EDA: What are the Top Dog Breeds in the Shelter?<a class="headerlink" href="#eda-what-are-the-top-dog-breeds-in-the-shelter" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dog_data</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="p">[</span><span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;DOG&#39;</span><span class="p">]</span>
@@ -781,7 +782,7 @@ Name: count, dtype: int64
 </div>
 </section>
 <section id="eda-what-are-the-most-common-names-for-different-species-in-the-shelter">
-<h4>EDA: What are the most common names for different species in the shelter?<a class="headerlink" href="#eda-what-are-the-most-common-names-for-different-species-in-the-shelter" title="Permalink to this headline">#</a></h4>
+<h4>EDA: What are the most common names for different species in the shelter?<a class="headerlink" href="#eda-what-are-the-most-common-names-for-different-species-in-the-shelter" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_names</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;Type&quot;</span><span class="p">,</span><span class="s2">&quot;Name&quot;</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
@@ -876,7 +877,7 @@ Name: count, dtype: int64
 <p>From the table above, we can see that the top three most common names for dogs at the adoption centers are Buddy, Luna, and Bella. On the other hand, the top three most common names for adopted cats are Milo, Lucy, and Smokey.</p>
 </section>
 <section id="trend-line-which-year-has-the-most-number-of-animal-intakes">
-<h4>Trend line: which year has the most number of animal intakes?<a class="headerlink" href="#trend-line-which-year-has-the-most-number-of-animal-intakes" title="Permalink to this headline">#</a></h4>
+<h4>Trend line: which year has the most number of animal intakes?<a class="headerlink" href="#trend-line-which-year-has-the-most-number-of-animal-intakes" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Intake Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Intake Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:])</span>
@@ -900,7 +901,7 @@ Name: count, dtype: int64
 </div>
 </section>
 <section id="eda-outcomes-by-species">
-<h4>EDA: Outcomes By Species<a class="headerlink" href="#eda-outcomes-by-species" title="Permalink to this headline">#</a></h4>
+<h4>EDA: Outcomes By Species<a class="headerlink" href="#eda-outcomes-by-species" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select species and outcome type</span>
@@ -1166,7 +1167,7 @@ dtype: int64
 <p>Adoption was the most common outcome for cats at 41%. Half of the dogs in the shelter are being returned to owner, whereas most of the other species (43%) are being transferred.</p>
 </section>
 <section id="performance-of-shelter-based-on-adoption-rate-transfer-rate-return-to-owner-rate-and-euthanasia-rate">
-<h4>Performance of Shelter based on Adoption rate, Transfer rate, Return-to-owner rate, and Euthanasia Rate<a class="headerlink" href="#performance-of-shelter-based-on-adoption-rate-transfer-rate-return-to-owner-rate-and-euthanasia-rate" title="Permalink to this headline">#</a></h4>
+<h4>Performance of Shelter based on Adoption rate, Transfer rate, Return-to-owner rate, and Euthanasia Rate<a class="headerlink" href="#performance-of-shelter-based-on-adoption-rate-transfer-rate-return-to-owner-rate-and-euthanasia-rate" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the overall rates for each species and outcome type throughout all years</span>
@@ -1509,9 +1510,9 @@ dtype: int64
 </section>
 </section>
 <section id="modeling">
-<h3>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">#</a></h3>
+<h3>Modeling<a class="headerlink" href="#modeling" title="Permalink to this heading">#</a></h3>
 <section id="predict-whether-an-animal-is-adopted-eventually">
-<h4>Predict whether an Animal is adopted eventually<a class="headerlink" href="#predict-whether-an-animal-is-adopted-eventually" title="Permalink to this headline">#</a></h4>
+<h4>Predict whether an Animal is adopted eventually<a class="headerlink" href="#predict-whether-an-animal-is-adopted-eventually" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new column named Adopted, and assign a value of 0 or 1 </span>
@@ -1641,7 +1642,7 @@ FPR is: 0.0835
 </section>
 </section>
 <section id="predicting-days-before-adoption">
-<h3>Predicting Days Before Adoption<a class="headerlink" href="#predicting-days-before-adoption" title="Permalink to this headline">#</a></h3>
+<h3>Predicting Days Before Adoption<a class="headerlink" href="#predicting-days-before-adoption" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### filtering on animals that are ultimately adopted</span>
@@ -1784,13 +1785,13 @@ R2: 0.32
 </section>
 </section>
 <section id="results">
-<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">#</a></h2>
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="conclusions">
-<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">#</a></h2>
+<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="author-contributions">
-<h2>Author Contributions<a class="headerlink" href="#author-contributions" title="Permalink to this headline">#</a></h2>
+<h2>Author Contributions<a class="headerlink" href="#author-contributions" title="Permalink to this heading">#</a></h2>
 </section>
 </section>
 

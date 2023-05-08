@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>What are the most common names for dogs and cats in the shelter? &#8212; Group 12 Final Project</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -64,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -723,7 +724,7 @@ document.write(`
 </div></div></div>
 </div>
 <section id="what-are-the-most-common-names-for-dogs-and-cats-in-the-shelter">
-<h1>What are the most common names for dogs and cats in the shelter?<a class="headerlink" href="#what-are-the-most-common-names-for-dogs-and-cats-in-the-shelter" title="Permalink to this headline">#</a></h1>
+<h1>What are the most common names for dogs and cats in the shelter?<a class="headerlink" href="#what-are-the-most-common-names-for-dogs-and-cats-in-the-shelter" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_names</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;Type&quot;</span><span class="p">,</span><span class="s2">&quot;Name&quot;</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
@@ -818,9 +819,9 @@ document.write(`
 <p>From the table above, we can see that the top three most common names for dogs at the adoption centers are Buddy, Luna, and Bella. On the other hand, the top three most common names for adopted cats are Milo, Lucy, and Smokey.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="outcomes">
-<h1>Outcomes<a class="headerlink" href="#outcomes" title="Permalink to this headline">#</a></h1>
+<h1>Outcomes<a class="headerlink" href="#outcomes" title="Permalink to this heading">#</a></h1>
 <section id="we-can-assess-the-performance-of-the-shelters-in-sonoma-county-by-analyzing-the-outcome-types">
-<h2>We can assess the performance of the shelters in Sonoma County by analyzing the outcome types.<a class="headerlink" href="#we-can-assess-the-performance-of-the-shelters-in-sonoma-county-by-analyzing-the-outcome-types" title="Permalink to this headline">#</a></h2>
+<h2>We can assess the performance of the shelters in Sonoma County by analyzing the outcome types.<a class="headerlink" href="#we-can-assess-the-performance-of-the-shelters-in-sonoma-county-by-analyzing-the-outcome-types" title="Permalink to this heading">#</a></h2>
 <p>First, we’ll drop the rows that contains null values for Outcome Type.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -862,7 +863,7 @@ dtype: int64
 </div>
 </section>
 <section id="outcome-by-species">
-<h2>Outcome by Species<a class="headerlink" href="#outcome-by-species" title="Permalink to this headline">#</a></h2>
+<h2>Outcome by Species<a class="headerlink" href="#outcome-by-species" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select species and outcome type</span>
@@ -1112,7 +1113,7 @@ dtype: int64
 <p>Adoption was the most common outcome for cats at 41%. Half of the dogs in the shelter are being returned to owner, whereas most of the other species (43%) are being transferred.</p>
 </section>
 <section id="evaluating-yearly-performance-of-the-shelter-based-on-adoption-rate-transfer-rate-return-to-owner-euthanasia-rate">
-<h2>Evaluating yearly performance of the shelter based on (adoption rate, transfer rate, return to owner, euthanasia rate)<a class="headerlink" href="#evaluating-yearly-performance-of-the-shelter-based-on-adoption-rate-transfer-rate-return-to-owner-euthanasia-rate" title="Permalink to this headline">#</a></h2>
+<h2>Evaluating yearly performance of the shelter based on (adoption rate, transfer rate, return to owner, euthanasia rate)<a class="headerlink" href="#evaluating-yearly-performance-of-the-shelter-based-on-adoption-rate-transfer-rate-return-to-owner-euthanasia-rate" title="Permalink to this heading">#</a></h2>
 <p>rate = variable/total # of intakes</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1316,7 +1317,7 @@ dtype: int64
 </div>
 </section>
 <section id="outcome-and-rates">
-<h2>Outcome and Rates<a class="headerlink" href="#outcome-and-rates" title="Permalink to this headline">#</a></h2>
+<h2>Outcome and Rates<a class="headerlink" href="#outcome-and-rates" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the proportion of outcome type in each year</span>
