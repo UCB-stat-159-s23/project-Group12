@@ -424,7 +424,29 @@ document.write(`
 <p>We retrieved the data from SoCo Data, which is an open data portal for the County of Sonoma. Here is a link to the data: <a class="reference external" href="https://data.sonomacounty.ca.gov/Government/Animal-Shelter-Intake-and-Outcome/924a-vesw">https://data.sonomacounty.ca.gov/Government/Animal-Shelter-Intake-and-Outcome/924a-vesw</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install catboost</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>catboost
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: catboost in /srv/conda/envs/notebook/lib/python3.10/site-packages (1.2)
+Requirement already satisfied: graphviz in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (0.20.1)
+Requirement already satisfied: scipy in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (1.10.0)
+Requirement already satisfied: plotly in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (5.12.0)
+Requirement already satisfied: matplotlib in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (3.6.3)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (1.16.0)
+Requirement already satisfied: numpy&gt;=1.16.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (1.23.5)
+Requirement already satisfied: pandas&gt;=0.24 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (1.5.3)
+Requirement already satisfied: python-dateutil&gt;=2.8.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from pandas&gt;=0.24-&gt;catboost) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from pandas&gt;=0.24-&gt;catboost) (2021.3)
+Requirement already satisfied: pillow&gt;=6.2.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (9.4.0)
+Requirement already satisfied: packaging&gt;=20.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (21.3)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (4.39.3)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (1.4.4)
+Requirement already satisfied: pyparsing&gt;=2.2.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (3.0.6)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (1.0.7)
+Requirement already satisfied: cycler&gt;=0.10 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (0.11.0)
+Requirement already satisfied: tenacity&gt;=6.2.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from plotly-&gt;catboost) (8.2.2)
 </pre></div>
 </div>
 </div>
@@ -439,6 +461,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
 <span class="kn">from</span> <span class="nn">statsmodels.stats.outliers_influence</span> <span class="kn">import</span> <span class="n">variance_inflation_factor</span>
+<span class="kn">from</span> <span class="nn">sheltertools.utils</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">159</span><span class="p">)</span>
 </pre></div>
@@ -689,15 +712,6 @@ dtype: int64
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shelter_data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Intake Subtype&#39;</span><span class="p">:</span> <span class="s1">&#39;Intake_Subtype&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;Intake Type&#39;</span><span class="p">:</span> <span class="s1">&#39;Intake_Type&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;Intake Condition&#39;</span><span class="p">:</span> <span class="s1">&#39;Intake_Condition&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 <section id="data-assumptions">
@@ -711,12 +725,13 @@ dtype: int64
 <h4>Explore the Number of Animals in the Shelter by Type<a class="headerlink" href="#explore-the-number-of-animals-in-the-shelter-by-type" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shelter_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Intake_Type&#39;</span><span class="p">)[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number_of_animals_by_type</span><span class="p">(</span><span class="n">shelter_data</span><span class="p">)</span>
+<span class="c1">#shelter_data.groupby(&#39;Intake_Type&#39;)[&#39;Type&#39;].value_counts()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intake_Type      Type 
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intake Type      Type 
 ADOPTION RETURN  DOG        292
                  CAT        116
                  OTHER        4
@@ -738,7 +753,7 @@ STRAY            DOG      10223
 TRANSFER         DOG        258
                  CAT        161
                  OTHER       12
-Name: count, dtype: int64
+Name: Type, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -748,18 +763,19 @@ Name: count, dtype: int64
 <h4>EDA: What are the Top Cat Breeds in the Shelter?<a class="headerlink" href="#eda-what-are-the-top-cat-breeds-in-the-shelter" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat_data</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="p">[</span><span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;CAT&#39;</span><span class="p">]</span>
-<span class="n">cat_breed_counts</span> <span class="o">=</span> <span class="n">cat_data</span><span class="p">[</span><span class="s1">&#39;Breed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">cat_breed_counts</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">cat_breed_counts</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Top Cat Breeds in the Shelter&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Breed&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_top_breeds</span><span class="p">(</span><span class="s1">&#39;CAT&#39;</span><span class="p">,</span> <span class="n">shelter_data</span><span class="p">)</span>
+<span class="c1"># cat_data = shelter_data[shelter_data[&#39;Type&#39;] == &#39;CAT&#39;]</span>
+<span class="c1"># cat_breed_counts = cat_data[&#39;Breed&#39;].value_counts(ascending=True).tail(5)</span>
+<span class="c1"># plt.barh(cat_breed_counts.index, cat_breed_counts)</span>
+<span class="c1"># plt.title(&#39;Top Cat Breeds in the Shelter&#39;, size=15)</span>
+<span class="c1"># plt.xlabel(&#39;Count&#39;, size=15)</span>
+<span class="c1"># plt.ylabel(&#39;Breed&#39;, size=15)</span>
+<span class="c1"># plt.show()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/dc2983b6fb3c3e9b3997a0eccb53c9070d4a4802da01eb2593d4d29beb603602.png" src="_images/dc2983b6fb3c3e9b3997a0eccb53c9070d4a4802da01eb2593d4d29beb603602.png" />
+<img alt="_images/eb61bdefb65e911d0ea5ac1aed0acdae4e793b962f4c3313bd732fafbc5e461a.png" src="_images/eb61bdefb65e911d0ea5ac1aed0acdae4e793b962f4c3313bd732fafbc5e461a.png" />
 </div>
 </div>
 </section>
@@ -767,18 +783,19 @@ Name: count, dtype: int64
 <h4>EDA: What are the Top Dog Breeds in the Shelter?<a class="headerlink" href="#eda-what-are-the-top-dog-breeds-in-the-shelter" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dog_data</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="p">[</span><span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;DOG&#39;</span><span class="p">]</span>
-<span class="n">dog_breed_counts</span> <span class="o">=</span> <span class="n">dog_data</span><span class="p">[</span><span class="s1">&#39;Breed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">dog_breed_counts</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">dog_breed_counts</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Top Dog Breeds in the Shelter&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Breed&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_top_breeds</span><span class="p">(</span><span class="s1">&#39;DOG&#39;</span><span class="p">,</span> <span class="n">shelter_data</span><span class="p">)</span>
+<span class="c1"># dog_data = shelter_data[shelter_data[&#39;Type&#39;] == &#39;DOG&#39;]</span>
+<span class="c1"># dog_breed_counts = dog_data[&#39;Breed&#39;].value_counts(ascending=True).tail(5)</span>
+<span class="c1"># plt.barh(dog_breed_counts.index, dog_breed_counts)</span>
+<span class="c1"># plt.title(&#39;Top Dog Breeds in the Shelter&#39;, size=15)</span>
+<span class="c1"># plt.xlabel(&#39;Count&#39;, size=15)</span>
+<span class="c1"># plt.ylabel(&#39;Breed&#39;, size=15)</span>
+<span class="c1"># plt.show()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ff59eab6c5220448e14d74a9c06598e8ea38d097edc105a41a504d6852fe9788.png" src="_images/ff59eab6c5220448e14d74a9c06598e8ea38d097edc105a41a504d6852fe9788.png" />
+<img alt="_images/961185797964f4a47ffb8453a1bf4384ed14c78bb0d98a9a718c669220ba10d3.png" src="_images/961185797964f4a47ffb8453a1bf4384ed14c78bb0d98a9a718c669220ba10d3.png" />
 </div>
 </div>
 </section>
@@ -897,7 +914,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/431de64d729b3c040cc2bb887b456f9721f1bc0c5c52ef5b336b39abb97514b1.png" src="_images/431de64d729b3c040cc2bb887b456f9721f1bc0c5c52ef5b336b39abb97514b1.png" />
+<img alt="_images/c15776c4270f5b2031fc49d4825aaf155daf75d5c32f2abf313565d09f1cb424.png" src="_images/c15776c4270f5b2031fc49d4825aaf155daf75d5c32f2abf313565d09f1cb424.png" />
 </div>
 </div>
 </section>
@@ -1158,11 +1175,14 @@ dtype: int64
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Outcome Type&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Proportion of Outcome Within Each Species&quot;</span><span class="p">);</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> 
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;figures/&#39;</span> <span class="o">+</span> <span class="s1">&#39;Proportion_of_Outcome_Within_Each_Species&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a671384aeda46a961e28c754ef16f4bcc76731e38be6c57f29a63333e759c1f2.png" src="_images/a671384aeda46a961e28c754ef16f4bcc76731e38be6c57f29a63333e759c1f2.png" />
+<img alt="_images/27f49cb5a3149c480f6e81440a46c3613f4607957dfd32ef9bb1baaa6d76b4f1.png" src="_images/27f49cb5a3149c480f6e81440a46c3613f4607957dfd32ef9bb1baaa6d76b4f1.png" />
 </div>
 </div>
 <p>Adoption was the most common outcome for cats at 41%. Half of the dogs in the shelter are being returned to owner, whereas most of the other species (43%) are being transferred.</p>
@@ -1480,11 +1500,11 @@ dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to plot trend line for rates given Outcome Type</span>
-<span class="k">def</span> <span class="nf">trend_proportion</span><span class="p">(</span><span class="n">Outcome</span><span class="p">):</span>
-    <span class="n">outcome_type</span> <span class="o">=</span> <span class="n">yearly_rate</span><span class="p">[</span><span class="n">yearly_rate</span><span class="p">[</span><span class="s2">&quot;Outcome Type&quot;</span><span class="p">]</span><span class="o">==</span><span class="n">Outcome</span><span class="p">]</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">outcome_type</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;percent&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">ut of total intakes&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Proportion of &quot;</span><span class="o">+</span><span class="n">Outcome</span><span class="o">+</span><span class="s2">&quot; by year&quot;</span><span class="p">)</span>
+<span class="c1"># def trend_proportion(Outcome):</span>
+<span class="c1">#     outcome_type = yearly_rate[yearly_rate[&quot;Outcome Type&quot;]==Outcome]</span>
+<span class="c1">#     ax = outcome_type.plot(x=&quot;year&quot;,y=&quot;percent&quot;)</span>
+<span class="c1">#     ax.set_ylabel(&quot;% out of total intakes&quot;)</span>
+<span class="c1">#     ax.set_title(&quot;Proportion of &quot;+Outcome+&quot; by year&quot;)</span>
     
 </pre></div>
 </div>
@@ -1493,18 +1513,18 @@ dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize rates</span>
-<span class="n">adoption</span> <span class="o">=</span> <span class="n">trend_proportion</span><span class="p">(</span><span class="s2">&quot;ADOPTION&quot;</span><span class="p">)</span>
-<span class="n">euthanize</span> <span class="o">=</span> <span class="n">trend_proportion</span><span class="p">(</span><span class="s2">&quot;EUTHANIZE&quot;</span><span class="p">)</span>
-<span class="n">transferred</span> <span class="o">=</span> <span class="n">trend_proportion</span><span class="p">(</span><span class="s2">&quot;TRANSFER&quot;</span><span class="p">)</span>
-<span class="n">rto</span> <span class="o">=</span> <span class="n">trend_proportion</span><span class="p">(</span><span class="s2">&quot;RETURN TO OWNER&quot;</span><span class="p">)</span>
+<span class="n">adoption</span> <span class="o">=</span> <span class="n">trend_proportion</span><span class="p">(</span><span class="s2">&quot;ADOPTION&quot;</span><span class="p">,</span> <span class="n">yearly_rate</span><span class="p">)</span>
+<span class="n">euthanize</span> <span class="o">=</span> <span class="n">trend_proportion</span><span class="p">(</span><span class="s2">&quot;EUTHANIZE&quot;</span><span class="p">,</span> <span class="n">yearly_rate</span><span class="p">)</span>
+<span class="n">transferred</span> <span class="o">=</span> <span class="n">trend_proportion</span><span class="p">(</span><span class="s2">&quot;TRANSFER&quot;</span><span class="p">,</span> <span class="n">yearly_rate</span><span class="p">)</span>
+<span class="n">rto</span> <span class="o">=</span> <span class="n">trend_proportion</span><span class="p">(</span><span class="s2">&quot;RETURN TO OWNER&quot;</span><span class="p">,</span> <span class="n">yearly_rate</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b534b5406f67bbd2de44c83f4cb2647f28ba38408dabf2a6b30e3a2d654397f3.png" src="_images/b534b5406f67bbd2de44c83f4cb2647f28ba38408dabf2a6b30e3a2d654397f3.png" />
-<img alt="_images/7a8fae2ce28f00b7c032efdd12af17a1bac53ceb4c51589c5f35e2e548ea527e.png" src="_images/7a8fae2ce28f00b7c032efdd12af17a1bac53ceb4c51589c5f35e2e548ea527e.png" />
-<img alt="_images/0a5cb3fd43f453b13a6fa4531338029f59eb17ad17b5e0fb08cf55859143977c.png" src="_images/0a5cb3fd43f453b13a6fa4531338029f59eb17ad17b5e0fb08cf55859143977c.png" />
-<img alt="_images/561336e9cf11a8916c82c17a3f234907f1402445cdd362c0a3fd0ccdde648839.png" src="_images/561336e9cf11a8916c82c17a3f234907f1402445cdd362c0a3fd0ccdde648839.png" />
+<img alt="_images/2ed625c7e36d947a70f3be049505a107ae95f8fd7d63a8e1bdc445f11d2fac82.png" src="_images/2ed625c7e36d947a70f3be049505a107ae95f8fd7d63a8e1bdc445f11d2fac82.png" />
+<img alt="_images/e8d6ea2e88b3d4281de64e6d24f1a51103a66da08d2b9624eed2f5a647bb1564.png" src="_images/e8d6ea2e88b3d4281de64e6d24f1a51103a66da08d2b9624eed2f5a647bb1564.png" />
+<img alt="_images/3ae7185d882aaadcac1da0e594aaf45c757e297985ea1b5acb979c81eddc9c26.png" src="_images/3ae7185d882aaadcac1da0e594aaf45c757e297985ea1b5acb979c81eddc9c26.png" />
+<img alt="_images/0bc59b6c6ab1b404d74ba43e1e96d3c12724cd1716e1df58f8deaddc5bc0cb74.png" src="_images/0bc59b6c6ab1b404d74ba43e1e96d3c12724cd1716e1df58f8deaddc5bc0cb74.png" />
 </div>
 </div>
 <p>It appears that as the adoption rate declines throughout the years, the shelter chooses to transfer than animals rather than euthanizing.</p>
@@ -1514,6 +1534,15 @@ dtype: int64
 <h3>Modeling<a class="headerlink" href="#modeling" title="Permalink to this heading">#</a></h3>
 <section id="predict-whether-an-animal-is-adopted-eventually">
 <h4>Predict whether an Animal is adopted eventually<a class="headerlink" href="#predict-whether-an-animal-is-adopted-eventually" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shelter_data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Intake Subtype&#39;</span><span class="p">:</span> <span class="s1">&#39;Intake_Subtype&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;Intake Type&#39;</span><span class="p">:</span> <span class="s1">&#39;Intake_Type&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;Intake Condition&#39;</span><span class="p">:</span> <span class="s1">&#39;Intake_Condition&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new column named Adopted, and assign a value of 0 or 1 </span>
@@ -1550,8 +1579,8 @@ dtype: int64
 Dep. Variable:                Adopted   No. Observations:                17397
 Model:                          Logit   Df Residuals:                    17373
 Method:                           MLE   Df Model:                           23
-Date:                Sun, 07 May 2023   Pseudo R-squ.:                  0.4198
-Time:                        23:54:46   Log-Likelihood:                -6107.9
+Date:                Mon, 08 May 2023   Pseudo R-squ.:                  0.4198
+Time:                        21:20:04   Log-Likelihood:                -6107.9
 converged:                      False   LL-Null:                       -10527.
 Covariance Type:            nonrobust   LLR p-value:                     0.000
 ============================================================================================================
@@ -1584,7 +1613,7 @@ Intake_Condition[T.UNTREATABLE]             -4.1498      0.324    -12.796      0
 ============================================================================================================
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/jovyan/envs/shelter/lib/python3.10/site-packages/statsmodels/base/model.py:607: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/srv/conda/envs/notebook/lib/python3.10/site-packages/statsmodels/base/model.py:604: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
   warnings.warn(&quot;Maximum Likelihood optimization failed to &quot;
 </pre></div>
 </div>
@@ -1721,10 +1750,10 @@ FPR is: 0.0835
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:	learn: 0.6449894	total: 73ms	remaining: 1m 49s
-500:	learn: 0.3096699	total: 12.9s	remaining: 25.6s
-1000:	learn: 0.2512172	total: 24.9s	remaining: 12.4s
-1499:	learn: 0.2182771	total: 37.7s	remaining: 0us
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:	learn: 0.6449894	total: 68.8ms	remaining: 1m 43s
+500:	learn: 0.3096699	total: 11.3s	remaining: 22.5s
+1000:	learn: 0.2512172	total: 23.6s	remaining: 11.7s
+1499:	learn: 0.2182771	total: 35.3s	remaining: 0us
 </pre></div>
 </div>
 </div>
@@ -1741,7 +1770,7 @@ FPR is: 0.0835
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6fd4b1f3cee18750379eb6139c118b3f019ae426411a2014b9193e5ae2f5b122.png" src="_images/6fd4b1f3cee18750379eb6139c118b3f019ae426411a2014b9193e5ae2f5b122.png" />
+<img alt="_images/e4dfa0f24810b2bef16563f12a2025245dea0e052e87854d68c32b361ea0993f.png" src="_images/e4dfa0f24810b2bef16563f12a2025245dea0e052e87854d68c32b361ea0993f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1780,7 +1809,7 @@ R2: 0.32
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c4ad911657e8006cdd13b2aa529ab19bd5729037089f1f85063777f290b1110c.png" src="_images/c4ad911657e8006cdd13b2aa529ab19bd5729037089f1f85063777f290b1110c.png" />
+<img alt="_images/9397a22b6e5ccde43e9ec05621935fe5b3abaa7712082573742eabb069df6b3c.png" src="_images/9397a22b6e5ccde43e9ec05621935fe5b3abaa7712082573742eabb069df6b3c.png" />
 </div>
 </div>
 </section>
