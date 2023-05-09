@@ -380,26 +380,24 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning">Data Cleaning</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-assumptions">Data Assumptions?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-the-number-of-animals-in-the-shelter-by-type">Explore the Number of Animals in the Shelter by Type</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-what-are-the-top-cat-breeds-in-the-shelter">EDA: What are the Top Cat Breeds in the Shelter?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-what-are-the-top-dog-breeds-in-the-shelter">EDA: What are the Top Dog Breeds in the Shelter?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-what-are-the-most-common-names-for-different-species-in-the-shelter">EDA: What are the most common names for different species in the shelter?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#trend-line-which-year-has-the-most-number-of-animal-intakes">Trend line: which year has the most number of animal intakes?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-outcomes-by-species">EDA: Outcomes By Species</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-of-shelter-based-on-adoption-rate-transfer-rate-return-to-owner-rate-and-euthanasia-rate">Performance of Shelter based on Adoption rate, Transfer rate, Return-to-owner rate, and Euthanasia Rate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-animals-in-the-shelter-by-type">Number of Animals in the Shelter by Type</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-breeds-by-animal-type">Top Breeds by Animal Type</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#top-cat-breeds">Top Cat Breeds</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#top-dog-breeds">Top Dog Breeds</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">Modeling</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-whether-an-animal-is-adopted-eventually">Predict whether an Animal is adopted eventually</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#most-common-names">Most Common Names</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trend-line-which-year-has-the-most-number-of-animal-intakes">Trend Line: which year has the most number of animal intakes?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outcomes-by-species">Outcomes By Species</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shelter-performance">Shelter Performance</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-days-before-adoption">Predicting Days Before Adoption</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">Modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#will-this-animal-be-adopted">Will this Animal be Adopted?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-days-before-adoption">How Many Days Before Adoption?</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusions">Conclusions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-contributions">Author Contributions</a></li>
 </ul>
@@ -417,36 +415,14 @@ document.write(`
 <h1>Analysis of Animal Shelter Data in Sonoma County, CA<a class="headerlink" href="#analysis-of-animal-shelter-data-in-sonoma-county-ca" title="Permalink to this heading">#</a></h1>
 <section id="goal-of-analysis">
 <h2>Goal of Analysis<a class="headerlink" href="#goal-of-analysis" title="Permalink to this heading">#</a></h2>
-<p>Our main goal is to shed insight on the outcomes of animals surrendered to Sonoma County Animal Services.</p>
+<p>Through our analysis, we hope to shed insight on the outcomes of animals surrendered to Sonoma County Animal Services. We primarily focused on adoption outcomes of animals.</p>
 </section>
 <section id="about-the-data">
 <h2>About the Data<a class="headerlink" href="#about-the-data" title="Permalink to this heading">#</a></h2>
 <p>We retrieved the data from SoCo Data, which is an open data portal for the County of Sonoma. Here is a link to the data: <a class="reference external" href="https://data.sonomacounty.ca.gov/Government/Animal-Shelter-Intake-and-Outcome/924a-vesw">https://data.sonomacounty.ca.gov/Government/Animal-Shelter-Intake-and-Outcome/924a-vesw</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>catboost
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: catboost in /srv/conda/envs/notebook/lib/python3.10/site-packages (1.2)
-Requirement already satisfied: scipy in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (1.10.0)
-Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (1.16.0)
-Requirement already satisfied: pandas&gt;=0.24 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (1.5.3)
-Requirement already satisfied: matplotlib in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (3.6.3)
-Requirement already satisfied: plotly in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (5.12.0)
-Requirement already satisfied: graphviz in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (0.20.1)
-Requirement already satisfied: numpy&gt;=1.16.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from catboost) (1.23.5)
-Requirement already satisfied: python-dateutil&gt;=2.8.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from pandas&gt;=0.24-&gt;catboost) (2.8.2)
-Requirement already satisfied: pytz&gt;=2020.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from pandas&gt;=0.24-&gt;catboost) (2021.3)
-Requirement already satisfied: cycler&gt;=0.10 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (0.11.0)
-Requirement already satisfied: contourpy&gt;=1.0.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (1.0.7)
-Requirement already satisfied: pillow&gt;=6.2.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (9.4.0)
-Requirement already satisfied: pyparsing&gt;=2.2.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (3.0.6)
-Requirement already satisfied: packaging&gt;=20.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (21.3)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (1.4.4)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from matplotlib-&gt;catboost) (4.39.3)
-Requirement already satisfied: tenacity&gt;=6.2.0 in /srv/conda/envs/notebook/lib/python3.10/site-packages (from plotly-&gt;catboost) (8.2.2)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install catboost</span>
 </pre></div>
 </div>
 </div>
@@ -483,7 +459,7 @@ Requirement already satisfied: tenacity&gt;=6.2.0 in /srv/conda/envs/notebook/li
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shelter_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shelter_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -602,57 +578,9 @@ Requirement already satisfied: tenacity&gt;=6.2.0 in /srv/conda/envs/notebook/li
       <td>95472(38.40179, -122.82512)</td>
       <td>1</td>
     </tr>
-    <tr>
-      <th>3</th>
-      <td>NaN</td>
-      <td>CAT</td>
-      <td>DOMESTIC LH</td>
-      <td>GRAY/WHITE</td>
-      <td>Spayed</td>
-      <td>SMALL</td>
-      <td>06/26/2011</td>
-      <td>K22-043405</td>
-      <td>VET</td>
-      <td>A414520</td>
-      <td>...</td>
-      <td>FIELD</td>
-      <td>DISPOSAL</td>
-      <td>DOA</td>
-      <td>UNKNOWN</td>
-      <td>DEAD</td>
-      <td>COUNTY</td>
-      <td>SANTA ROSA</td>
-      <td>95403.0</td>
-      <td>95403(38.51311, -122.75502)</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>PUDGY</td>
-      <td>DOG</td>
-      <td>CHIHUAHUA SH/SCHIPPERKE</td>
-      <td>TAN</td>
-      <td>Neutered</td>
-      <td>MED</td>
-      <td>07/20/2013</td>
-      <td>K23-043813</td>
-      <td>DA27</td>
-      <td>A415428</td>
-      <td>...</td>
-      <td>OVER THE COUNTER</td>
-      <td>TRANSFER</td>
-      <td>MUTTVILLE</td>
-      <td>UNKNOWN</td>
-      <td>HEALTHY</td>
-      <td>SANTA ROSA</td>
-      <td>OUT OF COUNTY</td>
-      <td>94103.0</td>
-      <td>94103(37.77672, -122.40779)</td>
-      <td>1</td>
-    </tr>
   </tbody>
 </table>
-<p>5 rows × 24 columns</p>
+<p>3 rows × 24 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -675,6 +603,7 @@ Requirement already satisfied: tenacity&gt;=6.2.0 in /srv/conda/envs/notebook/li
 </div>
 <section id="data-cleaning">
 <h3>Data Cleaning<a class="headerlink" href="#data-cleaning" title="Permalink to this heading">#</a></h3>
+<p>In this step, we dropped all animals that had a missing size.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shelter_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Size&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -714,19 +643,14 @@ dtype: int64
 </div>
 </section>
 </section>
-<section id="data-assumptions">
-<h2>Data Assumptions?<a class="headerlink" href="#data-assumptions" title="Permalink to this heading">#</a></h2>
-</section>
-<section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <section id="eda">
-<h3>EDA<a class="headerlink" href="#eda" title="Permalink to this heading">#</a></h3>
-<section id="explore-the-number-of-animals-in-the-shelter-by-type">
-<h4>Explore the Number of Animals in the Shelter by Type<a class="headerlink" href="#explore-the-number-of-animals-in-the-shelter-by-type" title="Permalink to this heading">#</a></h4>
+<h2>EDA<a class="headerlink" href="#eda" title="Permalink to this heading">#</a></h2>
+<section id="number-of-animals-in-the-shelter-by-type">
+<h3>Number of Animals in the Shelter by Type<a class="headerlink" href="#number-of-animals-in-the-shelter-by-type" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">number_of_animals_by_type</span></code> is a function we wrote for the <code class="docutils literal notranslate"><span class="pre">sheltertools</span></code> package. It calculates the number of animals per Intake Type.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number_of_animals_by_type</span><span class="p">(</span><span class="n">shelter_data</span><span class="p">)</span>
-<span class="c1">#shelter_data.groupby(&#39;Intake_Type&#39;)[&#39;Type&#39;].value_counts()</span>
 </pre></div>
 </div>
 </div>
@@ -759,8 +683,11 @@ Name: Type, dtype: int64
 </div>
 </div>
 </section>
-<section id="eda-what-are-the-top-cat-breeds-in-the-shelter">
-<h4>EDA: What are the Top Cat Breeds in the Shelter?<a class="headerlink" href="#eda-what-are-the-top-cat-breeds-in-the-shelter" title="Permalink to this heading">#</a></h4>
+<section id="top-breeds-by-animal-type">
+<h3>Top Breeds by Animal Type<a class="headerlink" href="#top-breeds-by-animal-type" title="Permalink to this heading">#</a></h3>
+<section id="top-cat-breeds">
+<h4>Top Cat Breeds<a class="headerlink" href="#top-cat-breeds" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">plot_top_breeds</span></code> is a function we wrote for the <code class="docutils literal notranslate"><span class="pre">sheltertools</span></code> package. It plots the top breeds for a specified animal type.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_top_breeds</span><span class="p">(</span><span class="s1">&#39;CAT&#39;</span><span class="p">,</span> <span class="n">shelter_data</span><span class="p">)</span>
@@ -772,8 +699,8 @@ Name: Type, dtype: int64
 </div>
 </div>
 </section>
-<section id="eda-what-are-the-top-dog-breeds-in-the-shelter">
-<h4>EDA: What are the Top Dog Breeds in the Shelter?<a class="headerlink" href="#eda-what-are-the-top-dog-breeds-in-the-shelter" title="Permalink to this heading">#</a></h4>
+<section id="top-dog-breeds">
+<h4>Top Dog Breeds<a class="headerlink" href="#top-dog-breeds" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_top_breeds</span><span class="p">(</span><span class="s1">&#39;DOG&#39;</span><span class="p">,</span> <span class="n">shelter_data</span><span class="p">)</span>
@@ -785,8 +712,9 @@ Name: Type, dtype: int64
 </div>
 </div>
 </section>
-<section id="eda-what-are-the-most-common-names-for-different-species-in-the-shelter">
-<h4>EDA: What are the most common names for different species in the shelter?<a class="headerlink" href="#eda-what-are-the-most-common-names-for-different-species-in-the-shelter" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="most-common-names">
+<h3>Most Common Names<a class="headerlink" href="#most-common-names" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_names</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;Type&quot;</span><span class="p">,</span><span class="s2">&quot;Name&quot;</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
@@ -881,7 +809,8 @@ Name: Type, dtype: int64
 <p>From the table above, we can see that the top three most common names for dogs at the adoption centers are Buddy, Luna, and Bella. On the other hand, the top three most common names for adopted cats are Milo, Lucy, and Smokey.</p>
 </section>
 <section id="trend-line-which-year-has-the-most-number-of-animal-intakes">
-<h4>Trend line: which year has the most number of animal intakes?<a class="headerlink" href="#trend-line-which-year-has-the-most-number-of-animal-intakes" title="Permalink to this heading">#</a></h4>
+<h3>Trend Line: which year has the most number of animal intakes?<a class="headerlink" href="#trend-line-which-year-has-the-most-number-of-animal-intakes" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">plot_trend_line</span></code> is a function we wrote for the <code class="docutils literal notranslate"><span class="pre">sheltertools</span></code> package. It plots the count of animals by year.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_trend_line</span><span class="p">(</span><span class="n">shelter_data</span><span class="p">);</span>
@@ -893,8 +822,8 @@ Name: Type, dtype: int64
 </div>
 </div>
 </section>
-<section id="eda-outcomes-by-species">
-<h4>EDA: Outcomes By Species<a class="headerlink" href="#eda-outcomes-by-species" title="Permalink to this heading">#</a></h4>
+<section id="outcomes-by-species">
+<h3>Outcomes By Species<a class="headerlink" href="#outcomes-by-species" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select species and outcome type</span>
@@ -1162,8 +1091,9 @@ dtype: int64
 </div>
 <p>Adoption was the most common outcome for cats at 41%. Half of the dogs in the shelter are being returned to owner, whereas most of the other species (43%) are being transferred.</p>
 </section>
-<section id="performance-of-shelter-based-on-adoption-rate-transfer-rate-return-to-owner-rate-and-euthanasia-rate">
-<h4>Performance of Shelter based on Adoption rate, Transfer rate, Return-to-owner rate, and Euthanasia Rate<a class="headerlink" href="#performance-of-shelter-based-on-adoption-rate-transfer-rate-return-to-owner-rate-and-euthanasia-rate" title="Permalink to this heading">#</a></h4>
+<section id="shelter-performance">
+<h3>Shelter Performance<a class="headerlink" href="#shelter-performance" title="Permalink to this heading">#</a></h3>
+<p>In this section, we analyze shelter performance based on Adoption rate, Transfer rate, Return-to-owner rate, and Euthanasia Rate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the overall rates for each species and outcome type throughout all years</span>
@@ -1493,9 +1423,9 @@ dtype: int64
 </section>
 </section>
 <section id="modeling">
-<h3>Modeling<a class="headerlink" href="#modeling" title="Permalink to this heading">#</a></h3>
-<section id="predict-whether-an-animal-is-adopted-eventually">
-<h4>Predict whether an Animal is adopted eventually<a class="headerlink" href="#predict-whether-an-animal-is-adopted-eventually" title="Permalink to this heading">#</a></h4>
+<h2>Modeling<a class="headerlink" href="#modeling" title="Permalink to this heading">#</a></h2>
+<section id="will-this-animal-be-adopted">
+<h3>Will this Animal be Adopted?<a class="headerlink" href="#will-this-animal-be-adopted" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shelter_data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Intake Subtype&#39;</span><span class="p">:</span> <span class="s1">&#39;Intake_Subtype&#39;</span><span class="p">,</span>
@@ -1541,8 +1471,8 @@ dtype: int64
 Dep. Variable:                Adopted   No. Observations:                17481
 Model:                          Logit   Df Residuals:                    17457
 Method:                           MLE   Df Model:                           23
-Date:                Mon, 08 May 2023   Pseudo R-squ.:                  0.4094
-Time:                        23:22:41   Log-Likelihood:                -6245.5
+Date:                Tue, 09 May 2023   Pseudo R-squ.:                  0.4094
+Time:                        17:46:13   Log-Likelihood:                -6245.5
 converged:                      False   LL-Null:                       -10575.
 Covariance Type:            nonrobust   LLR p-value:                     0.000
 ============================================================================================================
@@ -1631,10 +1561,61 @@ FPR is: 0.0871
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">roc_auc_score</span>
+
+<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">)</span>
+
+<span class="n">roc_auc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;ROC AUC = </span><span class="si">{</span><span class="n">roc_auc</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;navy&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;False Positive Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True Positive Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Receiver Operating Characteristic (ROC) Curve&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4d2d2ad7a43495689fa89efe0646818467d495600457f7e0e5d5d370bb6eeaba.png" src="_images/4d2d2ad7a43495689fa89efe0646818467d495600457f7e0e5d5d370bb6eeaba.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span>
+
+<span class="n">boundary_precisions</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">boundary_recalls</span> <span class="o">=</span> <span class="p">[]</span>
+                       
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span> <span class="p">:</span>
+    <span class="n">boundary_predictions</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_prob</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">boundary_precisions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">boundary_predictions</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">boundary_recalls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">boundary_predictions</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span> <span class="n">boundary_precisions</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span> <span class="n">boundary_recalls</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Decision Boundaries&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span> <span class="s1">&#39;Precision and Recall for Different Decision Boundaries&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower left&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/96a2e615362c75f302f075b1933ae2c03138d87364dcafa5bdcfe25917a25dd0.png" src="_images/96a2e615362c75f302f075b1933ae2c03138d87364dcafa5bdcfe25917a25dd0.png" />
+</div>
+</div>
 </section>
-</section>
-<section id="predicting-days-before-adoption">
-<h3>Predicting Days Before Adoption<a class="headerlink" href="#predicting-days-before-adoption" title="Permalink to this heading">#</a></h3>
+<section id="how-many-days-before-adoption">
+<h3>How Many Days Before Adoption?<a class="headerlink" href="#how-many-days-before-adoption" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### filtering on animals that are ultimately adopted</span>
@@ -1691,6 +1672,13 @@ FPR is: 0.0871
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>catboost<span class="w"> </span>-q
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### test train split</span>
 <span class="kn">from</span> <span class="nn">catboost</span> <span class="kn">import</span> <span class="n">CatBoostRegressor</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
@@ -1712,10 +1700,10 @@ FPR is: 0.0871
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:	learn: 0.6458547	total: 73ms	remaining: 1m 49s
-500:	learn: 0.3103670	total: 11.1s	remaining: 22.2s
-1000:	learn: 0.2503310	total: 22.5s	remaining: 11.2s
-1499:	learn: 0.2160745	total: 33.7s	remaining: 0us
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:	learn: 0.6458547	total: 34.6ms	remaining: 51.9s
+500:	learn: 0.3103670	total: 13.5s	remaining: 26.9s
+1000:	learn: 0.2503310	total: 26.8s	remaining: 13.4s
+1499:	learn: 0.2160745	total: 40.7s	remaining: 0us
 </pre></div>
 </div>
 </div>
@@ -1744,7 +1732,7 @@ FPR is: 0.0871
 <span class="n">unlog_actual</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expm1</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
 
 <span class="n">rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">unlog_actual</span><span class="p">,</span> <span class="n">unlog_pred</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">unlog_actual</span><span class="p">,</span> <span class="n">unlog_pred</span><span class="p">)</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Testing performance&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rmse</span><span class="p">))</span>
@@ -1755,7 +1743,7 @@ FPR is: 0.0871
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing performance
 RMSE: 22.60
-R2: 0.36
+R2: 0.48
 </pre></div>
 </div>
 </div>
@@ -1776,11 +1764,11 @@ R2: 0.36
 </div>
 </section>
 </section>
-<section id="results">
-<h2>Results<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h2>
-</section>
 <section id="conclusions">
 <h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this heading">#</a></h2>
+<p>Our model predicting whether or not an animal will be adopted performed adequately. It achieved an accuracy of 83%, true positive rate of 63%, and a 9% false positive rate when using a standard 0.5 decision boundary. The ROC-AUC score was 0.91. When plotting the precision and recall rates using different decision boundaries, both lines intersected around 72%</p>
+<p>Our model predicting the number of days before adoption did not perform very well. We transformed the target values as it followed an exponential distribution, but the model still did not perform very well. The RMSE was 22.6 days, and the R squared value was quite low, at 0.36.</p>
+<p>But the feature importances for the CatBoost were help. It tells us that Age and Intake yere were the top 2 most important features when performing the regression.</p>
 </section>
 <section id="author-contributions">
 <h2>Author Contributions<a class="headerlink" href="#author-contributions" title="Permalink to this heading">#</a></h2>
@@ -1850,26 +1838,24 @@ R2: 0.36
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning">Data Cleaning</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-assumptions">Data Assumptions?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-the-number-of-animals-in-the-shelter-by-type">Explore the Number of Animals in the Shelter by Type</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-what-are-the-top-cat-breeds-in-the-shelter">EDA: What are the Top Cat Breeds in the Shelter?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-what-are-the-top-dog-breeds-in-the-shelter">EDA: What are the Top Dog Breeds in the Shelter?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-what-are-the-most-common-names-for-different-species-in-the-shelter">EDA: What are the most common names for different species in the shelter?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#trend-line-which-year-has-the-most-number-of-animal-intakes">Trend line: which year has the most number of animal intakes?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-outcomes-by-species">EDA: Outcomes By Species</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-of-shelter-based-on-adoption-rate-transfer-rate-return-to-owner-rate-and-euthanasia-rate">Performance of Shelter based on Adoption rate, Transfer rate, Return-to-owner rate, and Euthanasia Rate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-animals-in-the-shelter-by-type">Number of Animals in the Shelter by Type</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-breeds-by-animal-type">Top Breeds by Animal Type</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#top-cat-breeds">Top Cat Breeds</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#top-dog-breeds">Top Dog Breeds</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">Modeling</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-whether-an-animal-is-adopted-eventually">Predict whether an Animal is adopted eventually</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#most-common-names">Most Common Names</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trend-line-which-year-has-the-most-number-of-animal-intakes">Trend Line: which year has the most number of animal intakes?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outcomes-by-species">Outcomes By Species</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shelter-performance">Shelter Performance</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-days-before-adoption">Predicting Days Before Adoption</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">Modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#will-this-animal-be-adopted">Will this Animal be Adopted?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-days-before-adoption">How Many Days Before Adoption?</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusions">Conclusions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-contributions">Author Contributions</a></li>
 </ul>
