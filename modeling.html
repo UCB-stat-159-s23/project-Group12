@@ -64,6 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'modeling';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Analysis of Animal Shelter Data in Sonoma County, CA" href="main.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -148,8 +149,9 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="main.html">Analysis of Animal Shelter Data in Sonoma County, CA</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Statistical Models</a></li>
 </ul>
 
     </div>
@@ -463,7 +465,7 @@ Dep. Variable:                Adopted   No. Observations:                17481
 Model:                          Logit   Df Residuals:                    17457
 Method:                           MLE   Df Model:                           23
 Date:                Tue, 09 May 2023   Pseudo R-squ.:                  0.4094
-Time:                        23:14:08   Log-Likelihood:                -6245.5
+Time:                        23:23:19   Log-Likelihood:                -6245.5
 converged:                      False   LL-Null:                       -10575.
 Covariance Type:            nonrobust   LLR p-value:                     0.000
 ============================================================================================================
@@ -604,6 +606,7 @@ FPR is: 0.0871
 <img alt="_images/96a2e615362c75f302f075b1933ae2c03138d87364dcafa5bdcfe25917a25dd0.png" src="_images/96a2e615362c75f302f075b1933ae2c03138d87364dcafa5bdcfe25917a25dd0.png" />
 </div>
 </div>
+<p>Our model predicting whether or not an animal will be adopted performed adequately. It achieved an accuracy of 83%, true positive rate of 63%, and a 9% false positive rate when using a standard 0.5 decision boundary. The ROC-AUC score was 0.91. When plotting the precision and recall rates using different decision boundaries, both lines intersected around 72%</p>
 </section>
 <section id="how-many-days-before-adoption">
 <h2>How Many Days Before Adoption?<a class="headerlink" href="#how-many-days-before-adoption" title="Permalink to this heading">#</a></h2>
@@ -736,10 +739,10 @@ Name: Intake Year, Length: 7337, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:	learn: 0.6458547	total: 82.9ms	remaining: 2m 4s
-500:	learn: 0.3103670	total: 13.5s	remaining: 26.9s
-1000:	learn: 0.2503310	total: 27.8s	remaining: 13.9s
-1499:	learn: 0.2160745	total: 41.4s	remaining: 0us
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:	learn: 0.6458547	total: 24.3ms	remaining: 36.4s
+500:	learn: 0.3103670	total: 12.1s	remaining: 24s
+1000:	learn: 0.2503310	total: 24.7s	remaining: 12.3s
+1499:	learn: 0.2160745	total: 38.3s	remaining: 0us
 </pre></div>
 </div>
 </div>
@@ -813,6 +816,8 @@ R2: 0.48
 <img alt="_images/3ee6a063533736b37f2f128a528397b187050943d1c7c4c4cb9f2a479b6dadf0.png" src="_images/3ee6a063533736b37f2f128a528397b187050943d1c7c4c4cb9f2a479b6dadf0.png" />
 </div>
 </div>
+<p>Our model predicting the number of days before adoption did not perform very well. We transformed the target values as it followed an exponential distribution, but the model still did not perform very well. The RMSE was 22.6 days, and the R squared value was quite low, at 0.36.</p>
+<p>But the feature importances for the CatBoost were help. It tells us that Age and Intake yere were the top 2 most important features when performing the regression.</p>
 </section>
 </section>
 
@@ -847,6 +852,15 @@ R2: 0.48
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="main.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Analysis of Animal Shelter Data in Sonoma County, CA</p>
+      </div>
+    </a>
 </div></div>
   
 </div>
