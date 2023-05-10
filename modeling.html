@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'modeling';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Analysis of Animal Shelter Data in Sonoma County, CA" href="main.html" />
+    <link rel="prev" title="Exploratory Data Analysis" href="EDA.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -130,7 +130,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
   
 
-<a class="navbar-brand logo" href="README.html">
+<a class="navbar-brand logo" href="main.html">
   
   
   
@@ -144,13 +144,14 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="README.html">
-                    Group 12 Final Project: An Analysis on Animal Shelter Data from Sonoma Country, CA
+                <a class="reference internal" href="main.html">
+                    Analysis of Animal Shelter Data in Sonoma County, CA
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="main.html">Analysis of Animal Shelter Data in Sonoma County, CA</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis Notebooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="EDA.html">Exploratory Data Analysis</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Statistical Models</a></li>
 </ul>
 
@@ -634,29 +635,6 @@ FPR is: 0.0871
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adopted_all</span><span class="p">[</span><span class="s1">&#39;Intake Year&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10       2022
-13       2022
-18       2020
-19       2022
-20       2023
-         ... 
-24990    2014
-24991    2016
-24997    2016
-24998    2017
-25003    2019
-Name: Intake Year, Length: 7337, dtype: object
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### filtering on animals that are ultimately adopted</span>
 <span class="n">adopted_all</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="p">[</span><span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Outcome Type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ADOPTION&#39;</span><span class="p">]</span>
 
@@ -733,16 +711,20 @@ Name: Intake Year, Length: 7337, dtype: object
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">CatBoostRegressor</span><span class="p">(</span><span class="n">cat_features</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">loss_function</span><span class="o">=</span><span class="s1">&#39;MAE&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
                          <span class="n">depth</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">1500</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">fitted_result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">fitted_result</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:	learn: 0.6458547	total: 24.3ms	remaining: 36.4s
-500:	learn: 0.3103670	total: 12.1s	remaining: 24s
-1000:	learn: 0.2503310	total: 24.7s	remaining: 12.3s
-1499:	learn: 0.2160745	total: 38.3s	remaining: 0us
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:	learn: 0.6458547	total: 25.3ms	remaining: 38s
+500:	learn: 0.3103670	total: 16.3s	remaining: 32.5s
+1000:	learn: 0.2503310	total: 33s	remaining: 16.5s
+1499:	learn: 0.2160745	total: 50s	remaining: 0us
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;catboost.core.CatBoostRegressor at 0x7f76540b4b50&gt;
 </pre></div>
 </div>
 </div>
@@ -758,6 +740,9 @@ Name: Intake Year, Length: 7337, dtype: object
 <span class="c1"># Save the predictions</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;model_results/&#39;</span> <span class="o">+</span> <span class="s1">&#39;CatPredictions.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;model_results/&#39;</span> <span class="o">+</span> <span class="s1">&#39;CatFittedResult.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">fitted_result</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -853,12 +838,12 @@ R2: 0.48
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="main.html"
+       href="EDA.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Analysis of Animal Shelter Data in Sonoma County, CA</p>
+        <p class="prev-next-title">Exploratory Data Analysis</p>
       </div>
     </a>
 </div></div>
