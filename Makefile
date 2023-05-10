@@ -11,13 +11,6 @@ env :
 	conda install ipykernel
 	python -m ipykernel install --user --name make-env --display-name "IPython - shelter"
 
-
-## html : build the JupyterBook normally
-
-.PHONY : html
-html :
-	jupyterbook build .
-
 ## all : run all notebooks
 
 .PHONY : all
