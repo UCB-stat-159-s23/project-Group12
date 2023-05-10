@@ -2,6 +2,9 @@
 
 Welcome to Group 12's final project for Stat 159. 
 
+The Binder link to our repository can be found below:
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCB-stat-159-s23/project-Group12.git/HEAD)
+
 ## Authors
 Florence Thin, Michelle Lin, and Sarah Song
 
@@ -18,7 +21,5 @@ For our final project, we analyze the publicly available data from Sonoma County
 - `shetertools` folder contains utility functions and tests for them
 - `_toc.yml` contains the table of contents for our JupyterBook
 
-Additionally, the Binder link to our repository can be found below:
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCB-stat-159-s23/project-Group12.git/HEAD)
 
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/LiaEl886)
