@@ -65,6 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Exploratory Data Analysis" href="EDA.html" />
+    <link rel="prev" title="Group 12 Final Project: An Analysis on Animal Shelter Data from Sonoma Country, CA" href="README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -130,7 +131,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="README.html">
   
   
   
@@ -149,13 +150,16 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
-                    Analysis of Animal Shelter Data in Sonoma County, CA
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Group 12 Final Project: An Analysis on Animal Shelter Data from Sonoma Country, CA
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis Notebooks</span></p>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Analysis of Animal Shelter Data in Sonoma County, CA</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis Notebooks</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="EDA.html">Exploratory Data Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modeling.html">Statistical Models</a></li>
@@ -700,8 +704,7 @@ Name: Type, dtype: int64
 <p><code class="docutils literal notranslate"><span class="pre">plot_top_breeds</span></code> is a function we wrote for the <code class="docutils literal notranslate"><span class="pre">sheltertools</span></code> package. It plots the top breeds for a specified animal type.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot_top_breeds(&#39;CAT&#39;, shelter_data)</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;figures/CAT_in_the_Shelter.png&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;figures/CAT_in_the_Shelter.png&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -714,8 +717,7 @@ Name: Type, dtype: int64
 <h4>Top Dog Breeds<a class="headerlink" href="#top-dog-breeds" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot_top_breeds(&#39;DOG&#39;, shelter_data)</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;figures/DOG_in_the_Shelter.png&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;figures/DOG_in_the_Shelter.png&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -825,8 +827,7 @@ Name: Type, dtype: int64
 <p><code class="docutils literal notranslate"><span class="pre">plot_trend_line</span></code> is a function we wrote for the <code class="docutils literal notranslate"><span class="pre">sheltertools</span></code> package. It plots the count of animals by year.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot_trend_line(shelter_data);</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;figures/Trend_Line_of_Animal_Intakes_by_Year.png&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;figures/Trend_Line_of_Animal_Intakes_by_Year.png&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1417,17 +1418,6 @@ dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize rates</span>
-<span class="c1"># adoption = trend_proportion(&quot;ADOPTION&quot;, yearly_rate)</span>
-<span class="c1"># euthanize = trend_proportion(&quot;EUTHANIZE&quot;, yearly_rate)</span>
-<span class="c1"># transferred = trend_proportion(&quot;TRANSFER&quot;, yearly_rate)</span>
-<span class="c1"># rto = trend_proportion(&quot;RETURN TO OWNER&quot;, yearly_rate)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;figures/Proportion_of_ADOPTION_by_Year.png&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1487,6 +1477,7 @@ dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new column named Adopted, and assign a value of 0 or 1 </span>
 <span class="c1"># to indicate whether each animal has been adopted or not.</span>
 <span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Adopted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Outcome Type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ADOPTION&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Intake Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Intake Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:])</span>
 
 <span class="c1">#Split the data into test and train</span>
 <span class="n">shelter_train</span><span class="p">,</span> <span class="n">shelter_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">shelter_data</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">159</span><span class="p">)</span>
@@ -1518,8 +1509,8 @@ dtype: int64
 Dep. Variable:                Adopted   No. Observations:                17481
 Model:                          Logit   Df Residuals:                    17457
 Method:                           MLE   Df Model:                           23
-Date:                Tue, 09 May 2023   Pseudo R-squ.:                  0.4094
-Time:                        23:36:35   Log-Likelihood:                -6245.5
+Date:                Wed, 10 May 2023   Pseudo R-squ.:                  0.4094
+Time:                        03:16:50   Log-Likelihood:                -6245.5
 converged:                      False   LL-Null:                       -10575.
 Covariance Type:            nonrobust   LLR p-value:                     0.000
 ============================================================================================================
@@ -1697,7 +1688,7 @@ FPR is: 0.0871
        &#39;Outcome Date&#39;, &#39;Days in Shelter&#39;, &#39;Intake_Type&#39;, &#39;Intake_Subtype&#39;,
        &#39;Outcome Type&#39;, &#39;Outcome Subtype&#39;, &#39;Intake_Condition&#39;,
        &#39;Outcome Condition&#39;, &#39;Intake Jurisdiction&#39;, &#39;Outcome Jurisdiction&#39;,
-       &#39;Outcome Zip Code&#39;, &#39;Location&#39;, &#39;Count&#39;, &#39;Intake Year&#39;, &#39;Adopted&#39;],
+       &#39;Outcome Zip Code&#39;, &#39;Location&#39;, &#39;Count&#39;, &#39;Adopted&#39;, &#39;Intake Year&#39;],
       dtype=&#39;object&#39;)
 </pre></div>
 </div>
@@ -1752,16 +1743,6 @@ FPR is: 0.0871
 <span class="c1"># Load the fitted results</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;model_results/&#39;</span> <span class="o">+</span> <span class="s1">&#39;CatFittedResult.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">fitted_results</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># model = CatBoostRegressor(cat_features=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], loss_function=&#39;MAE&#39;, verbose=500,</span>
-<span class="c1">#                          depth=9, iterations=1500, learning_rate=0.05)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="c1"># predictions = model.predict(X_test)</span>
 </pre></div>
 </div>
 </div>
@@ -1831,8 +1812,6 @@ R2: 0.48
 <section id="author-contributions">
 <h2>Author Contributions<a class="headerlink" href="#author-contributions" title="Permalink to this heading">#</a></h2>
 </section>
-<div class="toctree-wrapper compound">
-</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1866,6 +1845,15 @@ R2: 0.48
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Group 12 Final Project: An Analysis on Animal Shelter Data from Sonoma Country, CA</p>
+      </div>
+    </a>
     <a class="right-next"
        href="EDA.html"
        title="next page">

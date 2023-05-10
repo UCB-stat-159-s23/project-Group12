@@ -130,7 +130,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
   
 
-<a class="navbar-brand logo" href="main.html">
+<a class="navbar-brand logo" href="README.html">
   
   
   
@@ -150,12 +150,15 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="main.html">
-                    Analysis of Animal Shelter Data in Sonoma County, CA
+                <a class="reference internal" href="README.html">
+                    Group 12 Final Project: An Analysis on Animal Shelter Data from Sonoma Country, CA
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis Notebooks</span></p>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="main.html">Analysis of Animal Shelter Data in Sonoma County, CA</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis Notebooks</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="EDA.html">Exploratory Data Analysis</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Statistical Models</a></li>
@@ -466,13 +469,19 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning: Maximum number of iterations has been exceeded.
          Current function value: 0.357273
          Iterations: 35
-                           Logit Regression Results                           
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/srv/conda/envs/notebook/lib/python3.10/site-packages/statsmodels/base/model.py:604: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  warnings.warn(&quot;Maximum Likelihood optimization failed to &quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                           Logit Regression Results                           
 ==============================================================================
 Dep. Variable:                Adopted   No. Observations:                17481
 Model:                          Logit   Df Residuals:                    17457
 Method:                           MLE   Df Model:                           23
-Date:                Tue, 09 May 2023   Pseudo R-squ.:                  0.4094
-Time:                        23:23:19   Log-Likelihood:                -6245.5
+Date:                Wed, 10 May 2023   Pseudo R-squ.:                  0.4094
+Time:                        03:15:35   Log-Likelihood:                -6245.5
 converged:                      False   LL-Null:                       -10575.
 Covariance Type:            nonrobust   LLR p-value:                     0.000
 ============================================================================================================
@@ -503,10 +512,6 @@ Intake_Condition[T.TREATABLE/REHAB]          0.3818      0.077      4.954      0
 Intake_Condition[T.UNKNOWN]                 -1.3646      0.063    -21.801      0.000      -1.487      -1.242
 Intake_Condition[T.UNTREATABLE]             -4.3279      0.360    -12.012      0.000      -5.034      -3.622
 ============================================================================================================
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/srv/conda/envs/notebook/lib/python3.10/site-packages/statsmodels/base/model.py:604: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
-  warnings.warn(&quot;Maximum Likelihood optimization failed to &quot;
 </pre></div>
 </div>
 </div>
@@ -724,13 +729,13 @@ FPR is: 0.0871
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:	learn: 0.6458547	total: 25.3ms	remaining: 38s
-500:	learn: 0.3103670	total: 16.3s	remaining: 32.5s
-1000:	learn: 0.2503310	total: 33s	remaining: 16.5s
-1499:	learn: 0.2160745	total: 50s	remaining: 0us
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:	learn: 0.6458547	total: 76.3ms	remaining: 1m 54s
+500:	learn: 0.3103670	total: 13.5s	remaining: 26.9s
+1000:	learn: 0.2503310	total: 27.6s	remaining: 13.7s
+1499:	learn: 0.2160745	total: 41.1s	remaining: 0us
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;catboost.core.CatBoostRegressor at 0x7f76540b4b50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;catboost.core.CatBoostRegressor at 0x7f7ea5ca6440&gt;
 </pre></div>
 </div>
 </div>
