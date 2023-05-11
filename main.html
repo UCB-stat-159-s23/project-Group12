@@ -388,10 +388,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-of-analysis">Goal of Analysis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-the-data">About the Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning">Data Cleaning</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-the-data">About the Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-animals-in-the-shelter-by-type">Number of Animals in the Shelter by Type</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-breeds-by-animal-type">Top Breeds by Animal Type</a><ul class="nav section-nav flex-column">
@@ -399,7 +396,6 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#top-dog-breeds">Top Dog Breeds</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#most-common-names">Most Common Names</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trend-line-which-year-has-the-most-number-of-animal-intakes">Trend Line: which year has the most number of animal intakes?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outcomes-by-species">Outcomes By Species</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shelter-performance">Shelter Performance</a></li>
@@ -438,16 +434,17 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
-<span class="kn">from</span> <span class="nn">statsmodels.stats.outliers_influence</span> <span class="kn">import</span> <span class="n">variance_inflation_factor</span>
-<span class="kn">from</span> <span class="nn">sheltertools.utils</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">random</span>
+<span class="c1">#import matplotlib.pyplot as plt</span>
+<span class="c1">#from sklearn.model_selection import train_test_split</span>
+<span class="c1">#import statsmodels.api as sm</span>
+<span class="c1"># import statsmodels.formula.api as smf</span>
+<span class="c1"># from sklearn.metrics import confusion_matrix</span>
+<span class="c1"># from statsmodels.stats.outliers_influence import variance_inflation_factor</span>
+<span class="c1"># from sheltertools.utils import *</span>
+<span class="c1"># import random</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">159</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="c1"># random.seed(159)</span>
 </pre></div>
 </div>
 </div>
@@ -609,56 +606,16 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="data-cleaning">
-<h3>Data Cleaning<a class="headerlink" href="#data-cleaning" title="Permalink to this heading">#</a></h3>
-<p>In this step, we dropped all animals that had a missing size.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shelter_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Size&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">shelter_data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name                    6567
-Type                       0
-Breed                      0
-Color                      0
-Sex                        0
-Size                       0
-Date Of Birth           6206
-Impound Number             0
-Kennel Number             12
-Animal ID                  0
-Intake Date                0
-Outcome Date             159
-Days in Shelter            0
-Intake Type                0
-Intake Subtype             0
-Outcome Type             165
-Outcome Subtype          482
-Intake Condition           0
-Outcome Condition        508
-Intake Jurisdiction        0
-Outcome Jurisdiction    3508
-Outcome Zip Code        3565
-Location                3565
-Count                      0
-dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 <section id="eda">
 <h2>EDA<a class="headerlink" href="#eda" title="Permalink to this heading">#</a></h2>
 <section id="number-of-animals-in-the-shelter-by-type">
 <h3>Number of Animals in the Shelter by Type<a class="headerlink" href="#number-of-animals-in-the-shelter-by-type" title="Permalink to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">number_of_animals_by_type</span></code> is a function we wrote for the <code class="docutils literal notranslate"><span class="pre">sheltertools</span></code> package. It calculates the number of animals per Intake Type.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number_of_animals_by_type</span><span class="p">(</span><span class="n">shelter_data</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;computation_results/&#39;</span> <span class="o">+</span> <span class="s1">&#39;animal_types.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">animal_types</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">animal_types</span>
 </pre></div>
 </div>
 </div>
@@ -695,7 +652,6 @@ Name: Type, dtype: int64
 <h3>Top Breeds by Animal Type<a class="headerlink" href="#top-breeds-by-animal-type" title="Permalink to this heading">#</a></h3>
 <section id="top-cat-breeds">
 <h4>Top Cat Breeds<a class="headerlink" href="#top-cat-breeds" title="Permalink to this heading">#</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">plot_top_breeds</span></code> is a function we wrote for the <code class="docutils literal notranslate"><span class="pre">sheltertools</span></code> package. It plots the top breeds for a specified animal type.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;figures/CAT_in_the_Shelter.png&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
@@ -721,104 +677,8 @@ Name: Type, dtype: int64
 </div>
 </section>
 </section>
-<section id="most-common-names">
-<h3>Most Common Names<a class="headerlink" href="#most-common-names" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_names</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;Type&quot;</span><span class="p">,</span><span class="s2">&quot;Name&quot;</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
-<span class="n">top_names</span> <span class="o">=</span> <span class="n">top_names</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;Type&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">top_names</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Type</th>
-      <th>Name</th>
-      <th>size</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>4614</th>
-      <td>DOG</td>
-      <td>BUDDY</td>
-      <td>131</td>
-    </tr>
-    <tr>
-      <th>6004</th>
-      <td>DOG</td>
-      <td>LUNA</td>
-      <td>115</td>
-    </tr>
-    <tr>
-      <th>4402</th>
-      <td>DOG</td>
-      <td>BELLA</td>
-      <td>104</td>
-    </tr>
-    <tr>
-      <th>2291</th>
-      <td>CAT</td>
-      <td>MILO</td>
-      <td>21</td>
-    </tr>
-    <tr>
-      <th>2197</th>
-      <td>CAT</td>
-      <td>LUCY</td>
-      <td>19</td>
-    </tr>
-    <tr>
-      <th>758</th>
-      <td>CAT</td>
-      <td>*LUKE</td>
-      <td>17</td>
-    </tr>
-    <tr>
-      <th>7727</th>
-      <td>OTHER</td>
-      <td>*JESSICA</td>
-      <td>9</td>
-    </tr>
-    <tr>
-      <th>7864</th>
-      <td>OTHER</td>
-      <td>*ROGER</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>8036</th>
-      <td>OTHER</td>
-      <td>OREO</td>
-      <td>5</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>From the table above, we can see that the top three most common names for dogs at the adoption centers are Buddy, Luna, and Bella. On the other hand, the top three most common names for adopted cats are Milo, Lucy, and Smokey.</p>
-</section>
 <section id="trend-line-which-year-has-the-most-number-of-animal-intakes">
 <h3>Trend Line: which year has the most number of animal intakes?<a class="headerlink" href="#trend-line-which-year-has-the-most-number-of-animal-intakes" title="Permalink to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">plot_trend_line</span></code> is a function we wrote for the <code class="docutils literal notranslate"><span class="pre">sheltertools</span></code> package. It plots the count of animals by year.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;figures/Trend_Line_of_Animal_Intakes_by_Year.png&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
@@ -832,122 +692,48 @@ Name: Type, dtype: int64
 </section>
 <section id="outcomes-by-species">
 <h3>Outcomes By Species<a class="headerlink" href="#outcomes-by-species" title="Permalink to this heading">#</a></h3>
+<p>Display species and outcome type.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select species and outcome type</span>
-<span class="n">outcome_data</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s2">&quot;Type&quot;</span><span class="p">,</span> <span class="s2">&quot;Outcome Type&quot;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;computation_results/&#39;</span> <span class="o">+</span> <span class="s1">&#39;animal_types.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">outcome_data</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 <span class="n">outcome_data</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Type</th>
-      <th>Outcome Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>DOG</td>
-      <td>RETURN TO OWNER</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>OTHER</td>
-      <td>EUTHANIZE</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>DOG</td>
-      <td>RETURN TO OWNER</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>CAT</td>
-      <td>DISPOSAL</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>DOG</td>
-      <td>TRANSFER</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>25003</th>
-      <td>CAT</td>
-      <td>ADOPTION</td>
-    </tr>
-    <tr>
-      <th>25004</th>
-      <td>OTHER</td>
-      <td>TRANSFER</td>
-    </tr>
-    <tr>
-      <th>25005</th>
-      <td>DOG</td>
-      <td>EUTHANIZE</td>
-    </tr>
-    <tr>
-      <th>25006</th>
-      <td>DOG</td>
-      <td>TRANSFER</td>
-    </tr>
-    <tr>
-      <th>25007</th>
-      <td>OTHER</td>
-      <td>RETURN TO OWNER</td>
-    </tr>
-  </tbody>
-</table>
-<p>24973 rows × 2 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Drop NA</span>
-<span class="n">outcome_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Outcome Type&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">outcome_data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Type            0
-Outcome Type    0
-dtype: int64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intake Type      Type 
+ADOPTION RETURN  DOG        292
+                 CAT        116
+                 OTHER        4
+BORN HERE        CAT         16
+                 OTHER        1
+CONFISCATE       DOG       1456
+                 CAT        245
+                 OTHER      197
+OS APPT          DOG          1
+OWNER SURRENDER  CAT       1595
+                 DOG       1414
+                 OTHER      143
+QUARANTINE       DOG        424
+                 OTHER      277
+                 CAT        118
+STRAY            DOG      10223
+                 CAT       6603
+                 OTHER     1417
+TRANSFER         DOG        258
+                 CAT        161
+                 OTHER       12
+Name: Type, dtype: int64
 </pre></div>
 </div>
 </div>
 </div>
+<p>The proportion of species within each outcome type</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the proportion of species within each outcome type</span>
-<span class="n">top_outcome</span> <span class="o">=</span> <span class="n">outcome_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span> <span class="s2">&quot;Type&quot;</span><span class="p">,</span><span class="s2">&quot;Outcome Type&quot;</span><span class="p">],</span><span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
-<span class="n">top_outcome</span> <span class="o">=</span> <span class="n">top_outcome</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span> <span class="s2">&quot;Type&quot;</span><span class="p">,</span><span class="s2">&quot;Outcome Type&quot;</span><span class="p">],</span> <span class="n">group_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">&quot;size&quot;</span><span class="p">:</span><span class="s2">&quot;sum&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
-    <span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">group_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">100</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
-    <span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Type&quot;</span><span class="p">,</span><span class="s2">&quot;size&quot;</span><span class="p">,</span> <span class="s2">&quot;Outcome Type&quot;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
-<span class="n">top_outcome</span> <span class="o">=</span><span class="n">top_outcome</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span><span class="s2">&quot;percent&quot;</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;computation_results/&#39;</span> <span class="o">+</span> <span class="s1">&#39;top_outcome.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">top_outcome</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 <span class="n">top_outcome</span>
 </pre></div>
 </div>
@@ -1082,14 +868,7 @@ dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create bar plot to visualize most common outcome type within each species</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">top_outcome</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;Type&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Outcome Type&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Outcome Type&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Proportion of Outcome Within Each Species&quot;</span><span class="p">);</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> 
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;figures/&#39;</span> <span class="o">+</span> <span class="s1">&#39;Proportion_of_Outcome_Within_Each_Species&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;figures/Proportion_of_Outcome_Within_Each_Species.png&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1102,11 +881,12 @@ dtype: int64
 <section id="shelter-performance">
 <h3>Shelter Performance<a class="headerlink" href="#shelter-performance" title="Permalink to this heading">#</a></h3>
 <p>In this section, we analyze shelter performance based on Adoption rate, Transfer rate, Return-to-owner rate, and Euthanasia Rate.</p>
+<p>Display the overall rates for each species and outcome type throughout all years</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the overall rates for each species and outcome type throughout all years</span>
-<span class="n">rates_df</span> <span class="o">=</span> <span class="n">top_outcome</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;Type&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Outcome Type&quot;</span><span class="p">)</span>
-<span class="n">rates_df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;computation_results/&#39;</span> <span class="o">+</span> <span class="s1">&#39;rates_df.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">rates_by_outcome</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">rates_by_outcome</span>
 </pre></div>
 </div>
 </div>
@@ -1198,220 +978,6 @@ dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add year column to the dataframe using Outcome Date</span>
-<span class="n">outcome_data2</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s2">&quot;Outcome Date&quot;</span><span class="p">,</span><span class="s2">&quot;Outcome Type&quot;</span><span class="p">]]</span>
-<span class="n">outcome_data2</span><span class="p">[</span><span class="s2">&quot;Outcome Date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">outcome_data2</span><span class="p">[</span><span class="s1">&#39;Outcome Date&#39;</span><span class="p">])</span>
-<span class="n">outcome_data2</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">outcome_data2</span><span class="p">[</span><span class="s1">&#39;Outcome Date&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">year</span>
-<span class="n">outcome_data2</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Outcome Date</th>
-      <th>Outcome Type</th>
-      <th>year</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2022-12-26</td>
-      <td>RETURN TO OWNER</td>
-      <td>2022.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2023-03-15</td>
-      <td>EUTHANIZE</td>
-      <td>2023.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2023-03-15</td>
-      <td>RETURN TO OWNER</td>
-      <td>2023.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2022-12-27</td>
-      <td>DISPOSAL</td>
-      <td>2022.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2023-03-15</td>
-      <td>TRANSFER</td>
-      <td>2023.0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>25003</th>
-      <td>2019-10-23</td>
-      <td>ADOPTION</td>
-      <td>2019.0</td>
-    </tr>
-    <tr>
-      <th>25004</th>
-      <td>2018-10-10</td>
-      <td>TRANSFER</td>
-      <td>2018.0</td>
-    </tr>
-    <tr>
-      <th>25005</th>
-      <td>2014-10-02</td>
-      <td>EUTHANIZE</td>
-      <td>2014.0</td>
-    </tr>
-    <tr>
-      <th>25006</th>
-      <td>2020-08-20</td>
-      <td>TRANSFER</td>
-      <td>2020.0</td>
-    </tr>
-    <tr>
-      <th>25007</th>
-      <td>2018-03-13</td>
-      <td>RETURN TO OWNER</td>
-      <td>2018.0</td>
-    </tr>
-  </tbody>
-</table>
-<p>24973 rows × 3 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the proportion of outcome type in each year</span>
-<span class="n">yearly_rate</span> <span class="o">=</span> <span class="n">outcome_data2</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span><span class="s2">&quot;Outcome Type&quot;</span><span class="p">],</span><span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
-<span class="n">yearly_rate</span> <span class="o">=</span> <span class="n">yearly_rate</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;year&quot;</span><span class="p">,</span><span class="s2">&quot;Outcome Type&quot;</span><span class="p">],</span> <span class="n">group_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">&quot;size&quot;</span><span class="p">:</span><span class="s2">&quot;sum&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
-    <span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">group_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">100</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
-    <span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span><span class="s2">&quot;size&quot;</span><span class="p">,</span> <span class="s2">&quot;Outcome Type&quot;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-<span class="n">yearly_rate</span> <span class="o">=</span><span class="n">yearly_rate</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span><span class="s2">&quot;percent&quot;</span><span class="p">})</span>
-<span class="n">yearly_rate</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>Outcome Type</th>
-      <th>percent</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2014.0</td>
-      <td>ADOPTION</td>
-      <td>37.661113</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2014.0</td>
-      <td>RETURN TO OWNER</td>
-      <td>33.511474</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2014.0</td>
-      <td>TRANSFER</td>
-      <td>14.052185</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2014.0</td>
-      <td>EUTHANIZE</td>
-      <td>13.297705</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2014.0</td>
-      <td>DIED</td>
-      <td>0.911663</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>66</th>
-      <td>2023.0</td>
-      <td>EUTHANIZE</td>
-      <td>13.112392</td>
-    </tr>
-    <tr>
-      <th>67</th>
-      <td>2023.0</td>
-      <td>DIED</td>
-      <td>1.008646</td>
-    </tr>
-    <tr>
-      <th>68</th>
-      <td>2023.0</td>
-      <td>DISPOSAL</td>
-      <td>1.008646</td>
-    </tr>
-    <tr>
-      <th>69</th>
-      <td>2023.0</td>
-      <td>RTOS</td>
-      <td>0.576369</td>
-    </tr>
-    <tr>
-      <th>70</th>
-      <td>2023.0</td>
-      <td>ESCAPED/STOLEN</td>
-      <td>0.288184</td>
-    </tr>
-  </tbody>
-</table>
-<p>71 rows × 3 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;figures/Proportion_of_ADOPTION_by_Year.png&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1457,344 +1023,9 @@ dtype: int64
 <h2>Modeling<a class="headerlink" href="#modeling" title="Permalink to this heading">#</a></h2>
 <section id="will-this-animal-be-adopted">
 <h3>Will this Animal be Adopted?<a class="headerlink" href="#will-this-animal-be-adopted" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shelter_data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Intake Subtype&#39;</span><span class="p">:</span> <span class="s1">&#39;Intake_Subtype&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;Intake Type&#39;</span><span class="p">:</span> <span class="s1">&#39;Intake_Type&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;Intake Condition&#39;</span><span class="p">:</span> <span class="s1">&#39;Intake_Condition&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new column named Adopted, and assign a value of 0 or 1 </span>
-<span class="c1"># to indicate whether each animal has been adopted or not.</span>
-<span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Adopted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Outcome Type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ADOPTION&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Intake Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Intake Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:])</span>
-
-<span class="c1">#Split the data into test and train</span>
-<span class="n">shelter_train</span><span class="p">,</span> <span class="n">shelter_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">shelter_data</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">159</span><span class="p">)</span>
-<span class="n">shelter_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">shelter_test</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((17481, 26), (7492, 26))
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
-<span class="n">logreg</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;Adopted ~ Type + Sex + Size + Intake_Type + Intake_Condition&#39;</span><span class="p">,</span>
-                       <span class="n">data</span> <span class="o">=</span> <span class="n">shelter_train</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">logreg</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning: Maximum number of iterations has been exceeded.
-         Current function value: 0.357273
-         Iterations: 35
-                           Logit Regression Results                           
-==============================================================================
-Dep. Variable:                Adopted   No. Observations:                17481
-Model:                          Logit   Df Residuals:                    17457
-Method:                           MLE   Df Model:                           23
-Date:                Wed, 10 May 2023   Pseudo R-squ.:                  0.4094
-Time:                        03:16:50   Log-Likelihood:                -6245.5
-converged:                      False   LL-Null:                       -10575.
-Covariance Type:            nonrobust   LLR p-value:                     0.000
-============================================================================================================
-                                               coef    std err          z      P&gt;|z|      [0.025      0.975]
-------------------------------------------------------------------------------------------------------------
-Intercept                                   -0.2155      0.201     -1.072      0.284      -0.610       0.179
-Type[T.DOG]                                 -0.2597      0.069     -3.740      0.000      -0.396      -0.124
-Type[T.OTHER]                                2.1649      0.132     16.347      0.000       1.905       2.424
-Sex[T.Male]                                 -0.3421      0.166     -2.064      0.039      -0.667      -0.017
-Sex[T.Neutered]                              3.4818      0.131     26.629      0.000       3.225       3.738
-Sex[T.Spayed]                                3.6436      0.132     27.655      0.000       3.385       3.902
-Sex[T.Unknown]                              -0.8231      0.192     -4.298      0.000      -1.198      -0.448
-Size[T.LARGE]                               -2.3318      0.111    -21.093      0.000      -2.549      -2.115
-Size[T.MED]                                 -1.9292      0.107    -17.972      0.000      -2.140      -1.719
-Size[T.PUPPY]                                0.0186      0.154      0.121      0.904      -0.284       0.321
-Size[T.SMALL]                               -1.5469      0.081    -19.133      0.000      -1.705      -1.388
-Size[T.TOY]                                 -1.3876      0.129    -10.746      0.000      -1.641      -1.134
-Size[T.X-LRG]                               -2.8595      0.287     -9.963      0.000      -3.422      -2.297
-Intake_Type[T.BORN HERE]                   -18.5356   8192.129     -0.002      0.998   -1.61e+04     1.6e+04
-Intake_Type[T.CONFISCATE]                   -2.4406      0.175    -13.907      0.000      -2.785      -2.097
-Intake_Type[T.OS APPT]                     -15.0138   3346.556     -0.004      0.996   -6574.143    6544.115
-Intake_Type[T.OWNER SURRENDER]              -0.8415      0.157     -5.360      0.000      -1.149      -0.534
-Intake_Type[T.QUARANTINE]                   -3.2438      0.300    -10.818      0.000      -3.832      -2.656
-Intake_Type[T.STRAY]                        -1.6970      0.148    -11.465      0.000      -1.987      -1.407
-Intake_Type[T.TRANSFER]                     -1.0886      0.205     -5.298      0.000      -1.491      -0.686
-Intake_Condition[T.TREATABLE/MANAGEABLE]    -0.5956      0.091     -6.543      0.000      -0.774      -0.417
-Intake_Condition[T.TREATABLE/REHAB]          0.3818      0.077      4.954      0.000       0.231       0.533
-Intake_Condition[T.UNKNOWN]                 -1.3646      0.063    -21.801      0.000      -1.487      -1.242
-Intake_Condition[T.UNTREATABLE]             -4.3279      0.360    -12.012      0.000      -5.034      -3.622
-============================================================================================================
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/srv/conda/envs/notebook/lib/python3.10/site-packages/statsmodels/base/model.py:604: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
-  warnings.warn(&quot;Maximum Likelihood optimization failed to &quot;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predicting the probability of adopted</span>
-<span class="n">y_prob</span> <span class="o">=</span> <span class="n">logreg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">shelter_test</span><span class="p">)</span>
-
-<span class="c1"># Predicting the label: 0 or 1?</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">y_prob</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">y_prob</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
-<span class="n">y_test</span> <span class="o">=</span> <span class="n">shelter_test</span><span class="p">[</span><span class="s1">&#39;Adopted&#39;</span><span class="p">]</span>
-<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Confusion Matrix : </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cm</span><span class="p">)</span> 
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Confusion Matrix : 
- [[4820  460]
- [ 809 1403]]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TN</span><span class="p">,</span> <span class="n">FP</span><span class="p">,</span> <span class="n">FN</span><span class="p">,</span> <span class="n">TP</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-
-<span class="c1"># What is the Accuracy?</span>
-<span class="n">acc</span><span class="o">=</span> <span class="p">(</span><span class="n">TN</span> <span class="o">+</span> <span class="n">TP</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy is: </span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">acc</span>)
-
-
-<span class="c1"># What is the True Positive Rate ?</span>
-<span class="n">TPR_logit</span> <span class="o">=</span> <span class="n">TP</span><span class="o">/</span><span class="p">(</span><span class="n">TP</span><span class="o">+</span><span class="n">FN</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;TPR is: </span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">TPR_logit</span><span class="p">)</span>
-
-<span class="c1"># What is the False Positive rate ?</span>
-<span class="n">FPR_logit</span> <span class="o">=</span> <span class="n">FP</span><span class="o">/</span><span class="p">(</span><span class="n">FP</span><span class="o">+</span><span class="n">TN</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;FPR is: </span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">FPR_logit</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy is: 0.8306
-TPR is: 0.6343
-FPR is: 0.0871
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">roc_auc_score</span>
-
-<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">)</span>
-
-<span class="n">roc_auc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;ROC AUC = </span><span class="si">{</span><span class="n">roc_auc</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;navy&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;False Positive Rate&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True Positive Rate&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Receiver Operating Characteristic (ROC) Curve&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/4d2d2ad7a43495689fa89efe0646818467d495600457f7e0e5d5d370bb6eeaba.png" src="_images/4d2d2ad7a43495689fa89efe0646818467d495600457f7e0e5d5d370bb6eeaba.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span>
-
-<span class="n">boundary_precisions</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">boundary_recalls</span> <span class="o">=</span> <span class="p">[]</span>
-                       
-<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span> <span class="p">:</span>
-    <span class="n">boundary_predictions</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_prob</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-    <span class="n">boundary_precisions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">boundary_predictions</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
-    <span class="n">boundary_recalls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">boundary_predictions</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
-    
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span> <span class="n">boundary_precisions</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span> <span class="n">boundary_recalls</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Decision Boundaries&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Score&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span> <span class="s1">&#39;Precision and Recall for Different Decision Boundaries&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower left&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/96a2e615362c75f302f075b1933ae2c03138d87364dcafa5bdcfe25917a25dd0.png" src="_images/96a2e615362c75f302f075b1933ae2c03138d87364dcafa5bdcfe25917a25dd0.png" />
-</div>
-</div>
 </section>
 <section id="how-many-days-before-adoption">
 <h3>How Many Days Before Adoption?<a class="headerlink" href="#how-many-days-before-adoption" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### filtering on animals that are ultimately adopted</span>
-<span class="n">adopted_all</span> <span class="o">=</span> <span class="n">shelter_data</span><span class="p">[</span><span class="n">shelter_data</span><span class="p">[</span><span class="s1">&#39;Outcome Type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ADOPTION&#39;</span><span class="p">]</span>
-
-<span class="c1">### keeping only relevant columns</span>
-<span class="n">adopted</span> <span class="o">=</span> <span class="n">adopted_all</span><span class="p">[[</span><span class="s1">&#39;Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Breed&#39;</span><span class="p">,</span> <span class="s1">&#39;Color&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Date Of Birth&#39;</span><span class="p">,</span> <span class="s1">&#39;Intake Date&#39;</span><span class="p">,</span><span class="s1">&#39;Days in Shelter&#39;</span><span class="p">,</span> 
-                       <span class="s1">&#39;Intake_Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Intake_Subtype&#39;</span><span class="p">,</span> <span class="s1">&#39;Intake_Condition&#39;</span><span class="p">,</span> <span class="s1">&#39;Intake Jurisdiction&#39;</span><span class="p">,</span> <span class="s1">&#39;Location&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;Intake Year&#39;</span><span class="p">]]</span>
-<span class="n">adopted</span> <span class="o">=</span> <span class="n">adopted</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1">### creating a feature for animal age at intake time</span>
-<span class="n">adopted</span> <span class="o">=</span> <span class="n">adopted</span><span class="p">[</span><span class="o">~</span><span class="n">adopted</span><span class="p">[</span><span class="s1">&#39;Date Of Birth&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
-<span class="n">adopted</span> <span class="o">=</span> <span class="n">adopted</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">adopted</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">adopted</span><span class="p">[</span><span class="s1">&#39;Intake Date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%m/</span><span class="si">%d</span><span class="s1">/%Y&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">adopted</span><span class="p">[</span><span class="s1">&#39;Date Of Birth&#39;</span><span class="p">],</span> 
-                                                                                            <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%m/</span><span class="si">%d</span><span class="s1">/%Y&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">days</span>
-<span class="n">adopted</span> <span class="o">=</span> <span class="n">adopted</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Intake Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Date Of Birth&#39;</span><span class="p">])</span>
-<span class="n">adopted</span> <span class="o">=</span> <span class="n">adopted</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adopted_all</span><span class="o">.</span><span class="n">columns</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Name&#39;, &#39;Type&#39;, &#39;Breed&#39;, &#39;Color&#39;, &#39;Sex&#39;, &#39;Size&#39;, &#39;Date Of Birth&#39;,
-       &#39;Impound Number&#39;, &#39;Kennel Number&#39;, &#39;Animal ID&#39;, &#39;Intake Date&#39;,
-       &#39;Outcome Date&#39;, &#39;Days in Shelter&#39;, &#39;Intake_Type&#39;, &#39;Intake_Subtype&#39;,
-       &#39;Outcome Type&#39;, &#39;Outcome Subtype&#39;, &#39;Intake_Condition&#39;,
-       &#39;Outcome Condition&#39;, &#39;Intake Jurisdiction&#39;, &#39;Outcome Jurisdiction&#39;,
-       &#39;Outcome Zip Code&#39;, &#39;Location&#39;, &#39;Count&#39;, &#39;Adopted&#39;, &#39;Intake Year&#39;],
-      dtype=&#39;object&#39;)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adopted</span><span class="p">[</span><span class="s1">&#39;log_days&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">adopted</span><span class="p">[</span><span class="s1">&#39;Days in Shelter&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adopted_filtered</span> <span class="o">=</span> <span class="n">adopted</span><span class="p">[</span><span class="n">adopted</span><span class="p">[</span><span class="s1">&#39;Days in Shelter&#39;</span><span class="p">]</span><span class="o">&lt;</span> <span class="mi">200</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>catboost<span class="w"> </span>-q
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### test train split</span>
-<span class="kn">from</span> <span class="nn">catboost</span> <span class="kn">import</span> <span class="n">CatBoostRegressor</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
-
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">adopted_filtered</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Days in Shelter&#39;</span><span class="p">,</span> <span class="s1">&#39;log_days&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> 
-                                                    <span class="n">adopted_filtered</span><span class="p">[</span><span class="s1">&#39;log_days&#39;</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
-
-<span class="c1"># Load the model</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;model_results/&#39;</span> <span class="o">+</span> <span class="s1">&#39;CatBoostRegressor.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-
-<span class="c1"># Load the predictions</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;model_results/&#39;</span> <span class="o">+</span> <span class="s1">&#39;CatPredictions.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">predictions</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-
-<span class="c1"># Load the fitted results</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;model_results/&#39;</span> <span class="o">+</span> <span class="s1">&#39;CatFittedResult.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">fitted_results</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">predictions</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/0d3b95c9a28cb5c960779fed7c92a064bfa3bf19bf487bd7a66597cfee669ea2.png" src="_images/0d3b95c9a28cb5c960779fed7c92a064bfa3bf19bf487bd7a66597cfee669ea2.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
-
-<span class="n">unlog_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expm1</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
-<span class="n">unlog_actual</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expm1</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
-
-<span class="n">rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">unlog_actual</span><span class="p">,</span> <span class="n">unlog_pred</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Testing performance&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rmse</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R2: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r2</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing performance
-RMSE: 22.60
-R2: 0.48
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sorted_feature_importance</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">feature_importances_</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">sorted_feature_importance</span><span class="p">],</span> 
-        <span class="n">model</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">[</span><span class="n">sorted_feature_importance</span><span class="p">],</span> 
-        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;turquoise&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;CatBoost Feature Importance&quot;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/3ee6a063533736b37f2f128a528397b187050943d1c7c4c4cb9f2a479b6dadf0.png" src="_images/3ee6a063533736b37f2f128a528397b187050943d1c7c4c4cb9f2a479b6dadf0.png" />
-</div>
-</div>
 </section>
 </section>
 <section id="conclusions">
@@ -1879,10 +1110,7 @@ R2: 0.48
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-of-analysis">Goal of Analysis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-the-data">About the Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning">Data Cleaning</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-the-data">About the Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-animals-in-the-shelter-by-type">Number of Animals in the Shelter by Type</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-breeds-by-animal-type">Top Breeds by Animal Type</a><ul class="nav section-nav flex-column">
@@ -1890,7 +1118,6 @@ R2: 0.48
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#top-dog-breeds">Top Dog Breeds</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#most-common-names">Most Common Names</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trend-line-which-year-has-the-most-number-of-animal-intakes">Trend Line: which year has the most number of animal intakes?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outcomes-by-species">Outcomes By Species</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shelter-performance">Shelter Performance</a></li>
