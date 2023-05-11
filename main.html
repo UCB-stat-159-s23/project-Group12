@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Complete Analysis &#8212; Group 12 Final Project</title>
+    <title>Pawsitive Placements: Enhancing Animal Welfare through Data Analysis &#8212; Group 12 Final Project</title>
   
   
   
@@ -157,7 +157,7 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Complete Analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Pawsitive Placements: Enhancing Animal Welfare through Data Analysis</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis Notebooks</span></p>
 <ul class="nav bd-sidenav">
@@ -377,7 +377,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Complete Analysis</h1>
+    <h1>Pawsitive Placements: Enhancing Animal Welfare through Data Analysis</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -387,9 +387,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-of-analysis">Goal of Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-the-data">About the Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-exploration">Data Exploration</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-animals-in-the-shelter-by-type">Number of Animals in the Shelter by Type</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-breeds-by-animal-type">Top Breeds by Animal Type</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#top-cat-breeds">Top Cat Breeds</a></li>
@@ -419,10 +420,14 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="complete-analysis">
-<h1>Complete Analysis<a class="headerlink" href="#complete-analysis" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="pawsitive-placements-enhancing-animal-welfare-through-data-analysis">
+<h1>Pawsitive Placements: Enhancing Animal Welfare through Data Analysis<a class="headerlink" href="#pawsitive-placements-enhancing-animal-welfare-through-data-analysis" title="Permalink to this heading">#</a></h1>
 <p>Authors: Florence Thin, Michelle Lin, and Sarah Song</p>
-<p>This notebook contains our complete analysis. Individual analysis for EDA and Modeling can be found on the next pages, but both sections are also included here.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>Animal adoption in shelters plays a vital role in providing loving homes for animals in need while benefiting both the adopters and the community. By choosing to adopt from shelters, individuals offer animals a second chance at life, providing them with care, love, and security. Beyond the individual act of adoption, the benefits extend to the community as well. Adoption reduces the strain on overcrowded shelters, allowing them to allocate resources effectively and rescue more animals. In our project focused on <a class="reference external" href="https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services">Sonoma County Animal Services</a>
+, we aim to analyze adoption outcomes and identify factors that contribute to successful placements.</p>
+</section>
 <section id="goal-of-analysis">
 <h2>Goal of Analysis<a class="headerlink" href="#goal-of-analysis" title="Permalink to this heading">#</a></h2>
 <p>Through our analysis, we hope to shed insight on the outcomes of animals surrendered to Sonoma County Animal Services. Through careful analysis of adoption outcomes, our project aims to enhance animal welfare by identifying the factors that contribute to successful adoptions. This analysis will enable us to uncover patterns and trends that correlate with higher adoption rates, allowing us to develop effective strategies for increasing successful placements for these animals. By doing so, we hope to make a positive impact and improve the overall welfare of animals in need.</p>
@@ -434,17 +439,8 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="c1">#import matplotlib.pyplot as plt</span>
-<span class="c1">#from sklearn.model_selection import train_test_split</span>
-<span class="c1">#import statsmodels.api as sm</span>
-<span class="c1"># import statsmodels.formula.api as smf</span>
-<span class="c1"># from sklearn.metrics import confusion_matrix</span>
-<span class="c1"># from statsmodels.stats.outliers_influence import variance_inflation_factor</span>
-<span class="c1"># from sheltertools.utils import *</span>
-<span class="c1"># import random</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
-<span class="c1"># random.seed(159)</span>
 </pre></div>
 </div>
 </div>
@@ -464,7 +460,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shelter_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shelter_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -583,9 +579,57 @@ document.write(`
       <td>95472(38.40179, -122.82512)</td>
       <td>1</td>
     </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>CAT</td>
+      <td>DOMESTIC LH</td>
+      <td>GRAY/WHITE</td>
+      <td>Spayed</td>
+      <td>SMALL</td>
+      <td>06/26/2011</td>
+      <td>K22-043405</td>
+      <td>VET</td>
+      <td>A414520</td>
+      <td>...</td>
+      <td>FIELD</td>
+      <td>DISPOSAL</td>
+      <td>DOA</td>
+      <td>UNKNOWN</td>
+      <td>DEAD</td>
+      <td>COUNTY</td>
+      <td>SANTA ROSA</td>
+      <td>95403.0</td>
+      <td>95403(38.51311, -122.75502)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>PUDGY</td>
+      <td>DOG</td>
+      <td>CHIHUAHUA SH/SCHIPPERKE</td>
+      <td>TAN</td>
+      <td>Neutered</td>
+      <td>MED</td>
+      <td>07/20/2013</td>
+      <td>K23-043813</td>
+      <td>DA27</td>
+      <td>A415428</td>
+      <td>...</td>
+      <td>OVER THE COUNTER</td>
+      <td>TRANSFER</td>
+      <td>MUTTVILLE</td>
+      <td>UNKNOWN</td>
+      <td>HEALTHY</td>
+      <td>SANTA ROSA</td>
+      <td>OUT OF COUNTY</td>
+      <td>94103.0</td>
+      <td>94103(37.77672, -122.40779)</td>
+      <td>1</td>
+    </tr>
   </tbody>
 </table>
-<p>3 rows × 24 columns</p>
+<p>5 rows × 24 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -607,8 +651,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="eda">
-<h2>EDA<a class="headerlink" href="#eda" title="Permalink to this heading">#</a></h2>
+<section id="data-exploration">
+<h2>Data Exploration<a class="headerlink" href="#data-exploration" title="Permalink to this heading">#</a></h2>
 <section id="number-of-animals-in-the-shelter-by-type">
 <h3>Number of Animals in the Shelter by Type<a class="headerlink" href="#number-of-animals-in-the-shelter-by-type" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -662,6 +706,7 @@ Name: Type, dtype: int64
 <img alt="_images/c8af78827cad29018437da88cc6226b7682fcaa039aae08e803a42c0b1070737.png" src="_images/c8af78827cad29018437da88cc6226b7682fcaa039aae08e803a42c0b1070737.png" />
 </div>
 </div>
+<p>Our analysis reveals that the dominant cat breeds at Sonoma County Animal Shelter are domestic short hair cats. This observation aligns with the geographic context of Sonoma County being situated in California, a region characterized by warm climates. The prevalence of domestic short hair cats can be attributed to their inherent ability to adapt and thrive in such conditions.</p>
 </section>
 <section id="top-dog-breeds">
 <h4>Top Dog Breeds<a class="headerlink" href="#top-dog-breeds" title="Permalink to this heading">#</a></h4>
@@ -675,6 +720,7 @@ Name: Type, dtype: int64
 <img alt="_images/0d22315b91534f0f1d46e36473daeaaf6cc418799baa17a034d39f866ad869f6.png" src="_images/0d22315b91534f0f1d46e36473daeaaf6cc418799baa17a034d39f866ad869f6.png" />
 </div>
 </div>
+<p>According to our analysis, the Pit Bull breed appears to be prominently represented at the Sonoma County Animal Shelter. This observation can be influenced by the perceptions and biases associated with this breed. Pit bulls have historically encountered challenges and misconceptions due to their past associations with activities like dogfighting.</p>
 </section>
 </section>
 <section id="trend-line-which-year-has-the-most-number-of-animal-intakes">
@@ -689,15 +735,16 @@ Name: Type, dtype: int64
 <img alt="_images/927f7455dd72519a48ddf8d929459532d88e8b9fa84200ec4051a3228fe757f1.png" src="_images/927f7455dd72519a48ddf8d929459532d88e8b9fa84200ec4051a3228fe757f1.png" />
 </div>
 </div>
+<p>The trend line analysis reveals a gradual decrease in animal intakes from 2014 to 2019, followed by a significant drop in 2020, with the count decreasing from approximately 2500 to 1700. This sharp decline can be attributed to the onset of the COVID-19 pandemic when quarantine measures were implemented, resulting in fewer animals being brought to the shelter. However, there has been a revival in intakes from 2021 to 2022, with the count increasing from around 1750 to 2200. This rise may be associated with the overall improvement in the pandemic situation as more individuals received vaccinations, leading to a decrease in COVID-19 transmission rates and restrictions. It is important to note that the dataset only includes information up until early 2023, hence the low count of animal intakes for that year. Further data beyond 2023 will provide updated insights once available.</p>
 </section>
 <section id="outcomes-by-species">
 <h3>Outcomes By Species<a class="headerlink" href="#outcomes-by-species" title="Permalink to this heading">#</a></h3>
-<p>Display species and outcome type.</p>
+<p>The number of animals categorized by shelter intake type:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;computation_results/&#39;</span> <span class="o">+</span> <span class="s1">&#39;animal_types.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">outcome_data</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<span class="n">outcome_data</span>
+    <span class="n">intake_data</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">intake_data</span>
 </pre></div>
 </div>
 </div>
@@ -729,7 +776,7 @@ Name: Type, dtype: int64
 </div>
 </div>
 </div>
-<p>The proportion of species within each outcome type</p>
+<p>The proportion of animal types within each outcome type:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;computation_results/&#39;</span> <span class="o">+</span> <span class="s1">&#39;top_outcome.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -880,8 +927,8 @@ Name: Type, dtype: int64
 </section>
 <section id="shelter-performance">
 <h3>Shelter Performance<a class="headerlink" href="#shelter-performance" title="Permalink to this heading">#</a></h3>
-<p>In this section, we analyze shelter performance based on Adoption rate, Transfer rate, Return-to-owner rate, and Euthanasia Rate.</p>
-<p>Display the overall rates for each species and outcome type throughout all years</p>
+<p>In this section, we display shelter performance based on Adoption rate, Transfer rate, Return-to-owner rate, and Euthanasia Rate.</p>
+<p>The overall rates for each species and outcome type throughout all years:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;computation_results/&#39;</span> <span class="o">+</span> <span class="s1">&#39;rates_df.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -1016,16 +1063,19 @@ Name: Type, dtype: int64
 <img alt="_images/d20e81d02308e14ab861bc3e6c5caedfceaba7210b11427c8a8aa8a528137f92.png" src="_images/d20e81d02308e14ab861bc3e6c5caedfceaba7210b11427c8a8aa8a528137f92.png" />
 </div>
 </div>
-<p>It appears that as the adoption rate declines throughout the years, the shelter chooses to transfer than animals rather than euthanizing.</p>
+<p>Upon analyzing the above graphs, it is evident that both the adoption rates and euthanize rates exhibit a declining trend over the years, which aligns with our previous assumption regarding the onset of the COVID-19 pandemic. Specifically, the proportion of adoptions reached its lowest peak in 2020, accounting for approximately 15% of the outcomes, while the proportion of euthanizations hit its lowest peak in 2019, representing around 6% of the outcomes. These two years were heavily influenced by the impact of COVID-19. Conversely, the proportion of animal transfers to other shelters displayed an increasing trend over the years and reached its highest peak in 2022, comprising approximately 35% of the outcomes. Additionally, the proportion of animals returned to their owners reached its highest peak in 2020, accounting for around 41% of the outcomes.</p>
 </section>
 </section>
 <section id="modeling">
 <h2>Modeling<a class="headerlink" href="#modeling" title="Permalink to this heading">#</a></h2>
 <section id="will-this-animal-be-adopted">
 <h3>Will this Animal be Adopted?<a class="headerlink" href="#will-this-animal-be-adopted" title="Permalink to this heading">#</a></h3>
+<p>We employed logistic regression models to examine the likelihood of an animal being adopted. The aim of this analysis was to develop a predictive model that could be utilized to identify animals with a lower probability of adoption, allowing for prioritized efforts to optimize euthanize rates at the shelter. The model utilized input features such as animal types, sex, size, intake type, and intake condition. The performance of our model was respectable, achieving an accuracy of 83%, a true positive rate (TPR) of 63%, a false positive rate (FPR) of 9%, and a receiver operating characteristic area under the curve (ROC-AUC) score of 0.91. In the future, we intend to enhance the model by incorporating additional potential features and further investigate the factors that contribute to the challenges faced by certain animals in finding adoptive homes.</p>
 </section>
 <section id="how-many-days-before-adoption">
 <h3>How Many Days Before Adoption?<a class="headerlink" href="#how-many-days-before-adoption" title="Permalink to this heading">#</a></h3>
+<p>We employed the CatBoost machine learning algorithm to predict the number of days before adoption, but unfortunately, the model did not yield satisfactory results. Despite transforming the target values to address the exponential distribution, the model’s performance remained subpar. The root mean squared error (RMSE) for the predictions was 22.6 days, and the R-squared value, which measures the goodness of fit, was relatively low at 0.36.</p>
+<p>However, the feature importances provided by CatBoost proved to be valuable. They revealed that Age and Intake Year were the top two most influential features in the regression analysis. These insights highlight the importance of considering the age of the animals and the year they were taken into the shelter when predicting the time to adoption.</p>
 </section>
 </section>
 <section id="conclusions">
@@ -1109,9 +1159,10 @@ Name: Type, dtype: int64
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-of-analysis">Goal of Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-the-data">About the Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-exploration">Data Exploration</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-animals-in-the-shelter-by-type">Number of Animals in the Shelter by Type</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-breeds-by-animal-type">Top Breeds by Animal Type</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#top-cat-breeds">Top Cat Breeds</a></li>
