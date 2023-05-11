@@ -1,3 +1,4 @@
 catboost_info/
 sheltertools.egg-info/
-build/*
+build/
+build/lib/sheltertools
