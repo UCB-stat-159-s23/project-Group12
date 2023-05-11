@@ -1,4 +1,4 @@
-# Group 12 Final Project: An Analysis on Animal Shelter Data from Sonoma Country, CA
+# Group 12 Final Project: An Analysis on Animal Shelter Data from Sonoma County, CA
 
 Welcome to Group 12's final project for Stat 159. 
 
