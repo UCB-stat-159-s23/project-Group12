@@ -151,7 +151,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Group 12 Final Project: An Analysis on Animal Shelter Data from Sonoma Country, CA
+                    Group 12 Final Project: An Analysis on Animal Shelter Data from Sonoma County, CA
                 </a>
             </li>
         </ul>
@@ -475,7 +475,7 @@ Dep. Variable:                Adopted   No. Observations:                17481
 Model:                          Logit   Df Residuals:                    17457
 Method:                           MLE   Df Model:                           23
 Date:                Thu, 11 May 2023   Pseudo R-squ.:                  0.4094
-Time:                        05:19:02   Log-Likelihood:                -6245.5
+Time:                        05:44:30   Log-Likelihood:                -6245.5
 converged:                      False   LL-Null:                       -10575.
 Covariance Type:            nonrobust   LLR p-value:                     0.000
 ============================================================================================================
@@ -566,7 +566,8 @@ FPR is: 0.0871
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">roc_auc_score</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting the ROC Curve</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">roc_auc_score</span>
 
 <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">)</span>
 
@@ -588,7 +589,9 @@ FPR is: 0.0871
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting precision and recall rates using different decision boundaries</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span>
 
 <span class="n">boundary_precisions</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">boundary_recalls</span> <span class="o">=</span> <span class="p">[]</span>
@@ -727,13 +730,13 @@ FPR is: 0.0871
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:	learn: 0.6458547	total: 77.7ms	remaining: 1m 56s
-500:	learn: 0.3103670	total: 11.8s	remaining: 23.6s
-1000:	learn: 0.2503310	total: 23.9s	remaining: 11.9s
-1499:	learn: 0.2160745	total: 35.9s	remaining: 0us
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:	learn: 0.6458547	total: 69.3ms	remaining: 1m 43s
+500:	learn: 0.3103670	total: 11.6s	remaining: 23.2s
+1000:	learn: 0.2503310	total: 23.1s	remaining: 11.5s
+1499:	learn: 0.2160745	total: 34.2s	remaining: 0us
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;catboost.core.CatBoostRegressor at 0x7f8680f1c970&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;catboost.core.CatBoostRegressor at 0x7fa2e9222770&gt;
 </pre></div>
 </div>
 </div>

@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Exploratory Data Analysis" href="EDA.html" />
-    <link rel="prev" title="Group 12 Final Project: An Analysis on Animal Shelter Data from Sonoma Country, CA" href="README.html" />
+    <link rel="prev" title="Group 12 Final Project: An Analysis on Animal Shelter Data from Sonoma County, CA" href="README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -152,7 +152,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Group 12 Final Project: An Analysis on Animal Shelter Data from Sonoma Country, CA
+                    Group 12 Final Project: An Analysis on Animal Shelter Data from Sonoma County, CA
                 </a>
             </li>
         </ul>
@@ -425,8 +425,8 @@ document.write(`
 <p>Authors: Florence Thin, Michelle Lin, and Sarah Song</p>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
-<p>Animal adoption in shelters plays a vital role in providing loving homes for animals in need while benefiting both the adopters and the community. By choosing to adopt from shelters, individuals offer animals a second chance at life, providing them with care, love, and security. Beyond the individual act of adoption, the benefits extend to the community as well. Adoption reduces the strain on overcrowded shelters, allowing them to allocate resources effectively and rescue more animals. In our project focused on <a class="reference external" href="https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services">Sonoma County Animal Services</a>
-, we aim to analyze adoption outcomes and identify factors that contribute to successful placements.</p>
+<p>Animal adoption in shelters play a vital role in providing loving homes for animals in need while benefiting both the adopters and the community. By choosing to adopt from shelters, individuals offer animals a second chance at life, providing them with care, love, and security. Beyond the individual act of adoption, the benefits extend to the community as well. Adoption reduces the strain on overcrowded shelters, allowing them to allocate resources effectively and rescue more animals. In our project focused on <a class="reference external" href="https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services">Sonoma County Animal Services</a>, we aim to analyze adoption outcomes and identify factors that contribute to successful placements.</p>
+<p>In this overview notebook, we will go provide a background on the project, as well as present the results from our EDA and modeling. Individual notebooks with detailed code for both the EDA and modeling sections can be found on this website as well.</p>
 </section>
 <section id="goal-of-analysis">
 <h2>Goal of Analysis<a class="headerlink" href="#goal-of-analysis" title="Permalink to this heading">#</a></h2>
@@ -435,6 +435,7 @@ document.write(`
 <section id="about-the-data">
 <h2>About the Data<a class="headerlink" href="#about-the-data" title="Permalink to this heading">#</a></h2>
 <p>We retrieved the data from SoCo Data, which is an open data portal for the County of Sonoma. Here is a link to the data: <a class="reference external" href="https://data.sonomacounty.ca.gov/Government/Animal-Shelter-Intake-and-Outcome/924a-vesw">https://data.sonomacounty.ca.gov/Government/Animal-Shelter-Intake-and-Outcome/924a-vesw</a></p>
+<p>Our main assumption from this data is that it is a comprehensive collection of all animals that the Sonoma County Animal Services worked with. Otherwise, our results would not be applicable to real-life scenarios, and our models would not be trained on accurate data. Additionally, in order to apply our findings to other geographical locations, we rely on the assumption that the data we used can be generalized to areas other than Sonoma County. This may not necessarily be true, as differences such as population density and income may affect animal outcomes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -655,6 +656,7 @@ document.write(`
 <h2>Data Exploration<a class="headerlink" href="#data-exploration" title="Permalink to this heading">#</a></h2>
 <section id="number-of-animals-in-the-shelter-by-type">
 <h3>Number of Animals in the Shelter by Type<a class="headerlink" href="#number-of-animals-in-the-shelter-by-type" title="Permalink to this heading">#</a></h3>
+<p>To generate this table, we created the function <code class="docutils literal notranslate"><span class="pre">number_of_animals_by_type</span></code> for the <code class="docutils literal notranslate"><span class="pre">sheltertools</span></code> package. It calculates the number of animals per Intake Type.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;computation_results/&#39;</span> <span class="o">+</span> <span class="s1">&#39;animal_types.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -694,6 +696,7 @@ Name: Type, dtype: int64
 </section>
 <section id="top-breeds-by-animal-type">
 <h3>Top Breeds by Animal Type<a class="headerlink" href="#top-breeds-by-animal-type" title="Permalink to this heading">#</a></h3>
+<p>For these bar charts, we created the function <code class="docutils literal notranslate"><span class="pre">plot_top_breeds</span></code> for the <code class="docutils literal notranslate"><span class="pre">sheltertools</span></code> package. It plots the top breeds for a specified animal type.</p>
 <section id="top-cat-breeds">
 <h4>Top Cat Breeds<a class="headerlink" href="#top-cat-breeds" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
@@ -725,6 +728,7 @@ Name: Type, dtype: int64
 </section>
 <section id="trend-line-which-year-has-the-most-number-of-animal-intakes">
 <h3>Trend Line: which year has the most number of animal intakes?<a class="headerlink" href="#trend-line-which-year-has-the-most-number-of-animal-intakes" title="Permalink to this heading">#</a></h3>
+<p>For this plot, we used the function <code class="docutils literal notranslate"><span class="pre">plot_trend_line</span></code>, which we wrote for the <code class="docutils literal notranslate"><span class="pre">sheltertools</span></code> package. It plots the count of animals by year.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;figures/Trend_Line_of_Animal_Intakes_by_Year.png&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
@@ -1068,6 +1072,7 @@ Name: Type, dtype: int64
 </section>
 <section id="modeling">
 <h2>Modeling<a class="headerlink" href="#modeling" title="Permalink to this heading">#</a></h2>
+<p>Our code and plots for this section can be found in our modeling notebook, which has its own page titled “Statistical Models.”</p>
 <section id="will-this-animal-be-adopted">
 <h3>Will this Animal be Adopted?<a class="headerlink" href="#will-this-animal-be-adopted" title="Permalink to this heading">#</a></h3>
 <p>We employed logistic regression models to examine the likelihood of an animal being adopted. The aim of this analysis was to develop a predictive model that could be utilized to identify animals with a lower probability of adoption, allowing for prioritized efforts to optimize euthanize rates at the shelter. The model utilized input features such as animal types, sex, size, intake type, and intake condition. The performance of our model was respectable, achieving an accuracy of 83%, a true positive rate (TPR) of 63%, a false positive rate (FPR) of 9%, and a receiver operating characteristic area under the curve (ROC-AUC) score of 0.91. In the future, we intend to enhance the model by incorporating additional potential features and further investigate the factors that contribute to the challenges faced by certain animals in finding adoptive homes.</p>
@@ -1075,14 +1080,12 @@ Name: Type, dtype: int64
 <section id="how-many-days-before-adoption">
 <h3>How Many Days Before Adoption?<a class="headerlink" href="#how-many-days-before-adoption" title="Permalink to this heading">#</a></h3>
 <p>We employed the CatBoost machine learning algorithm to predict the number of days before adoption, but unfortunately, the model did not yield satisfactory results. Despite transforming the target values to address the exponential distribution, the model’s performance remained subpar. The root mean squared error (RMSE) for the predictions was 22.6 days, and the R-squared value, which measures the goodness of fit, was relatively low at 0.36.</p>
-<p>However, the feature importances provided by CatBoost proved to be valuable. They revealed that Age and Intake Year were the top two most influential features in the regression analysis. These insights highlight the importance of considering the age of the animals and the year they were taken into the shelter when predicting the time to adoption.</p>
+<p>However, the feature importances provided by CatBoost proved to be valuable. This revealed that Age and Intake Year were the top two most influential features in the regression analysis. These insights highlight the importance of considering the age of the animals and the year they were taken into the shelter when predicting the time to adoption.</p>
 </section>
 </section>
 <section id="conclusions">
 <h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this heading">#</a></h2>
-<p>Our model predicting whether or not an animal will be adopted performed adequately. It achieved an accuracy of 83%, true positive rate of 63%, and a 9% false positive rate when using a standard 0.5 decision boundary. The ROC-AUC score was 0.91. When plotting the precision and recall rates using different decision boundaries, both lines intersected around 72%</p>
-<p>Our model predicting the number of days before adoption did not perform very well. We transformed the target values as it followed an exponential distribution, but the model still did not perform very well. The RMSE was 22.6 days, and the R squared value was quite low, at 0.36.</p>
-<p>But the feature importances for the CatBoost were help. It tells us that Age and Intake yere were the top 2 most important features when performing the regression.</p>
+<p>Through our EDA and modeling, we were able to provide some insight on the outcomes of animals surrendered to Sonoma County Animal Services. We identified factors that contributed to successful adoptions, such as the age of the animal, as well as other factors that influence whether an animal is ultimately adopted or not. This will help shelters determine what factors to prioritize when determining whether not an animal should be kept for adoption or euthanized, which is an unfortunate reality that shelters must face. But by providing these insights, we hope to increase successful placements for these animals and minimizing in-shelter time, thus maximizing the number of animals that shelters are ultimately able to help find new homes, and generally increasing the overall welfare of animals in need.</p>
 </section>
 <section id="author-contributions">
 <h2>Author Contributions<a class="headerlink" href="#author-contributions" title="Permalink to this heading">#</a></h2>
@@ -1129,7 +1132,7 @@ Name: Type, dtype: int64
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Group 12 Final Project: An Analysis on Animal Shelter Data from Sonoma Country, CA</p>
+        <p class="prev-next-title">Group 12 Final Project: An Analysis on Animal Shelter Data from Sonoma County, CA</p>
       </div>
     </a>
     <a class="right-next"
